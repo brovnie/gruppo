@@ -38,7 +38,7 @@
             @include('auth.login');
             <p>Nog geen account? <a>Register</a></p>
         </div>
-        <div class="hidden">
+        <div>
             @include('auth.register');
         </div>
     </div>
