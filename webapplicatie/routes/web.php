@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/events', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/events', [App\Http\Controllers\HomeController::class, 'index'])->name('events');
 
 //Routes user profiles
-Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
+Route::get('/profile/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 
 //Routes posts

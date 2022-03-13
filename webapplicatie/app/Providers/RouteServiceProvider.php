@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Providers;
-
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -33,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot( )
     {
         $this->configureRateLimiting();
 
@@ -47,6 +48,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+        $router = app('router'); // Router Instance
+        parent::boot( $router );
+
+        $router->bind( 'username', function ( $username ) {
+                return User::where( 'username', $username )->firstOrFail( );
+            });
     }
 
     /**

@@ -12,11 +12,20 @@ class ProfilesController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index( $user)
+    public function index( $username)
     {
-        $user=User::find($user);
-        return view('home', [
-            'user' => $user,
-        ]);
+        $user = User::where('username', $username)->first();
+        if(isset($username)) {
+            return view('profile', [ 'user' => $username ]);
+        }
+
+        return "user nof found";
+
+
+      /*  $user = User::where('username', $user)->first();
+        if(isset($user))
+            return view('tampilkan', ['username' => $user]);
+        return "user not found!"; */
+    
     }
 }
