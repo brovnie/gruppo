@@ -14,18 +14,6 @@ class ProfilesController extends Controller
      */
     public function index( $username)
     {
-        $user = User::where('username', $username)->first();
-        if(isset($username)) {
-            return view('profile', [ 'user' => $username ]);
-        }
-
-        return "user nof found";
-
-
-      /*  $user = User::where('username', $user)->first();
-        if(isset($user))
-            return view('tampilkan', ['username' => $user]);
-        return "user not found!"; */
-    
+            return view('profile', [ 'user' => $username ]);    
     }
 }

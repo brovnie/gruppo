@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@extends('partials.head')
+@include('partials.head')
 <body>
     <div id="app">
-    @extends('partials.header')
+    @include('partials.header')
         <main class="py-4">
             @yield('content')
         </main>
