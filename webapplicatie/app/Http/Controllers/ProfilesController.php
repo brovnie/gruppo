@@ -12,8 +12,13 @@ class ProfilesController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index( $username)
+    public function index( $username )
     {
-            return view('profile', [ 'user' => $username ]);    
+    return view('profiles.index', [ 'user' => $username ]);    
+    }
+
+    public function edit( $username )
+    {
+    return view('profiles.edit', [ 'user' => $username ]);    
     }
 }

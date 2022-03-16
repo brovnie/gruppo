@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@extends('partials.head')
+@include('partials.head')
     <body class="antialiased">
-        @extends('partials.header')
+        @include('partials.header')
         <div class="main">
 <div class="grid grid-cols-2 bg-white w-full">
     <div>

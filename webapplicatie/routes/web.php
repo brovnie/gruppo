@@ -22,7 +22,17 @@ Auth::routes();
 
 Route::get('/events', [App\Http\Controllers\HomeController::class, 'index'])->name('events');
 
-//Routes user profiles
-Route::get('/profile/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
+/**
+ * Routes User Profile
+ */
+Route::get('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
+Route::get('/profiles/{username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
 
-//Routes posts
+/**
+ * Routes Post 
+ */
+
+ /**
+ * Routes Apis 
+ */
+Route::get('/api/v1/cities', [App\Http\Controllers\APIs\BelgianCitiesApi::class, 'getCity']);

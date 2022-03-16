@@ -27,20 +27,26 @@
 <div>
     <p class="font-bold">Over mij</p>
     <div>
-        <p>{{ $user->profile->biography}}</p>
+        <p>{{ $user->profile->biography ?? 'test'}}</p>
     </div>
-    <div class="flex gap-5">
+    <div class="flex gap-5 py-5">
+        <div class="flex-1">
+            <p><span></span>
+                {{$user->profile->favorite_sport ?? 'n/a'}} 
+            </p>
+        </div>
     <div class="flex-1">
-        <p><span></span>{{$user->profile->favorite_sport}} </p>
+    <p><span></span>
+        {{$user->profile->location ?? "n/a"}} 
+</p>
     </div>
     <div class="flex-1">
-    <p><span></span>{{$user->profile->location}} </p>
-    </div>
-    <div class="flex-1">
-    <p><span></span>{{$user->profile->location}} </p>
+    <p><span></span>
+        {{$user->profile->get_age() ?? "n/a"}} years
+ </p>
     </div>
 </div>
-<div><a href="#">Profile bewerken</a></div>
+<div><a href="/profiles/{{$user->username}}/edit">Profile bewerken</a></div>
 </div>
                 </div>
             </div>
