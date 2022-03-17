@@ -36,4 +36,25 @@
     </div>  
 </form>
 </div>
+<script>
+    $(document).ready(function(){
+
+getCities();
+
+function getCities() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/v1/cities',
+    dataType: 'json',
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+});
+</script>
 @endsection
