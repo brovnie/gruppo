@@ -13,9 +13,9 @@ class BelgianCitiesApi extends Controller
         $response = Http::withHeaders([
             'X-Parse-Application-Id' => 'QYWkrwfH68esSmWIdaWuUaDYpwVbRBRHVz1O7Rfw',
             'X-Parse-REST-API-Key' => 'Va03yNnsxx7hw4LPRjtBbDPjw3tRSnH47QBlhwJF' 
-            ])->get('https://parseapi.back4app.com/classes/Belgiumcities_City?limit=1000&order=name&keys=name')->throw()->json();
+            ])->get('https://parseapi.back4app.com/classes/Belgiumcities_City?limit=1000&order=name&keys=name');
 
-           if ($response->successful()) {
+           if ( $response->successful() ) {
             return $response->getBody()->getContents();
            }  
 

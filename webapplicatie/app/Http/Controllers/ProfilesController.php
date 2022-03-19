@@ -14,11 +14,11 @@ class ProfilesController extends Controller
      */
     public function index( $username )
     {
-    return view('profiles.index', [ 'user' => $username ]);    
+        return view('profiles.index', [ 'user' => $username ]);    
     }
 
     public function edit( $username )
-    {
-    return view('profiles.edit', [ 'user' => $username ]);    
+    {  
+        return view('profiles.edit', [ 'user' => $username ]);    
     }
 }

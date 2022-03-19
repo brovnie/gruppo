@@ -2,59 +2,64 @@
 
 @section('content')
 <div class="container">
-    <div>
-        <p>{{__('Account Information')}}</p>
-        <p>{{__('Profil Information')}}</p>
-        <p></p>
-
-</div>
+<div>
 <p>{{__('Over jou')}}</p>
-   <form>
+<form>
     <div>
         <label class="text-bold" for="name">{{__('Persoonlijk')}}</label>
         <input type="text" name="" id="" placeholder="{{__('Voornaam')}}">
         <input type="text" name="" id="" placeholder="{{__('Achternaam')}}">
     </div>    
+        <select-city></select-city>
     <div>
-        <label for="location">{{__('Locatie')}}</label>
+        <label for="geslacht">{{__('Geslacht')}}</label>
         <select>
-
+            <option>{{__('Man')}}</option>
+            <option>{{__('Vrouw')}}</option>
+            <option>{{__('Andere')}}</option>
         </select>
-        <input type="text" name="" id="" placeholder="{{__('Achternaam')}}">
-    </div>  
-    <div>
-        <label for="Locali">{{__('Localisatie')}}</label>
-        <input type="text" name="" id="">
-    </div>  
-    <div>
-        <label for="username">{{__('Geslacht')}}</label>
-        <input type="text" name="" id="">
-    </div>  
+    </div>   
     <div>
         <label for="username">{{__('Gebortedatum')}}</label>
-        <input type="text" name="" id="">
+        <input type="date" name="" id="">
     </div>  
 </form>
 </div>
-<script>
-    $(document).ready(function(){
-
-getCities();
-
-function getCities() {
-  $.ajax({
-    method: 'GET',
-    url: '/api/v1/cities',
-    dataType: 'json',
-    success: function(data) {
-      console.log(data);
-    },
-    error: function(error) {
-      console.log(error);
-    }
-  });
-}
-
-});
-</script>
+<div>
+<p>{{__('Personaliseren')}}</p>
+<form>
+    <div>
+        <img src="" alt='profile avatar'>
+        <div class="edit-icon"></div>
+        <input type="file" id="myfile" name="myfile">
+    </div>
+    @isset( $user->profile->favorite_sport )
+    <div>
+        <label>{{__('Gebruikersnaam')}}</label>
+        <input type="text" name="" id="" placeholder="{{__('Gebruikersnaam')}}">
+    </div>
+    @endisset
+    <div>
+        <label>{{__('Favoriete sport')}}</label>
+        <select>
+            <option>{{__('American football')}}</option>
+            <option>{{__('Basketbal')}}</option>
+            <option>{{__('Cricket')}}</option>
+            <option>{{__('Handbal')}}</option>
+            <option>{{__('Hockey')}}</option>
+            <option>{{__('Ijshokey')}}</option>
+            <option>{{__('Korfbal')}}</option>
+            <option>{{__('Tennis')}}</option>
+            <option>{{__('Voetbal')}}</option>
+            <option>{{__('Volleybal')}}</option>
+            <option>{{__('Waterpolo')}}</option>
+        </select>
+    </div>
+    <div>
+    <label>{{__('Biography')}}</label>
+        <textarea row="5"></textarea>
+    </div>
+</form>
+</div>
+</div>
 @endsection
