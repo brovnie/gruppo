@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
 <div>
 <p>{{__('Over jou')}}</p>
