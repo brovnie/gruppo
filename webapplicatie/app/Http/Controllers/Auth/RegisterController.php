@@ -66,18 +66,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-
         $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        
         Profile::create(['user_id' => $user->id]);
+        
         return $user;
     }
+
     protected function registered(Request $request, $user)
     {
-        return redirect(route('profile.edit', $user->username));
+        return redirect(route('profile.create', $user->username));
     }
 }

@@ -26,7 +26,10 @@ Route::get('/events', [App\Http\Controllers\HomeController::class, 'index'])->na
  * Routes User Profile
  */
 Route::get('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
+Route::get('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'create'])->name('profile.create');
+Route::post('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'store'])->name('profile.store');
 Route::get('/profiles/{username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
+Route::patch('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
 
 /**
  * Routes Post 

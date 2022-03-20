@@ -10,20 +10,28 @@ class Profile extends Model
 {
     use HasFactory;
 
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'user_id',
     ];
-
+    
+    /**
+    * Connect with User
+    */
     public function user(){
         return $this->belongsTo(User::class);
     }
-/**
- * Get user age.
- */
-public function get_age()
-{
-    return Carbon::parse($this->attributes['birthdate'])->age;
-}
+
+    /**
+    * Get user age.
+    */
+    public function get_age()
+    {
+        return Carbon::parse($this->attributes['birthdate'])->age;
+    }
 
 }
