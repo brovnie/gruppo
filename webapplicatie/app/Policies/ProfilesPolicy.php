@@ -41,7 +41,9 @@ class ProfilesPolicy
      */
     public function create(User $user, Profile $profile)
     {
-        return $user->id == $profile->user_id;
+        if($user->id == $profile->user_id) {
+            return $user->new_user == true;
+        }
     }
 
     /**
