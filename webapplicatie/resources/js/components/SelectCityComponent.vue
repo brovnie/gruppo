@@ -1,8 +1,7 @@
 <template>
     <div>
-        <label for="location">Locatie</label>
-        <select>
-        <option>Select city</option>
+        <select name="location" id="location">
+        <option value="0">Select city</option>
             <option v-for="city in cities" :value="city.name">
                 {{ city.name }}
             </option>

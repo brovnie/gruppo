@@ -39,7 +39,13 @@ class ProfilesPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user, Profile $profile)
+    public function createStepOne(User $user, Profile $profile)
+    {
+        if($user->id == $profile->user_id) {
+            return $user->new_user == true;
+        }
+    }
+    public function createStepTwo(User $user, Profile $profile)
     {
         if($user->id == $profile->user_id) {
             return $user->new_user == true;

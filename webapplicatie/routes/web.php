@@ -26,7 +26,11 @@ Route::get('/events', [App\Http\Controllers\HomeController::class, 'index'])->na
  * Routes User Profile
  */
 Route::get('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
-Route::get('/profiles/{username}/create', [App\Http\Controllers\ProfilesController::class, 'create'])->name('profile.create');
+Route::get('/profiles/{username}/create-step-one', [App\Http\Controllers\ProfilesController::class, 'createStepOne'])->name('profile.create.step.one');
+Route::patch('/profiles/{username}/create-step-one', [App\Http\Controllers\ProfilesController::class, 'storeStepOne'])->name('profile.store.step.one');
+Route::get('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'createStepTwo'])->name('profile.create.step.two');
+Route::patch('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'storeStepTwo'])->name('profile.store.step.two');
+
 Route::post('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'store'])->name('profile.store');
 Route::get('/profiles/{username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
 Route::patch('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
@@ -34,6 +38,7 @@ Route::patch('/profiles/{username}', [App\Http\Controllers\ProfilesController::c
 /**
  * Routes Post 
  */
+
 
  /**
  * Routes Apis 

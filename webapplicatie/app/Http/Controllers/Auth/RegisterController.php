@@ -80,6 +80,6 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        return redirect(route('profile.create', $user->username));
+        return redirect(route('profile.create.step.one', $user->username));
     }
 }

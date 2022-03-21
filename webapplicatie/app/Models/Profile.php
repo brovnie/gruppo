@@ -17,8 +17,16 @@ class Profile extends Model
      */
     protected $fillable = [
         'user_id',
+        'name',
+        'familyname',
+        'location',
+        'gender',
+        'birthdate',
+        'favorite_sport',
+        'biography',
+        'profil_photo',
     ];
-    
+
     /**
     * Connect with User
     */
