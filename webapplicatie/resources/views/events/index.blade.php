@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <p>Welcome to events</p>
+                    <p>Single event</p>
                     <p class="font-bold">{{$user->username}}</p>
                 </div>
             </div>

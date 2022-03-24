@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -79,6 +80,7 @@ class ProfilesController extends Controller
 
        return redirect()->route('events');
    }
+
     /**
      * Edit profile
      */
@@ -87,6 +89,5 @@ class ProfilesController extends Controller
         $this->authorize('edit', $username->profile);
         return view('profiles.edit', [ 'username' => $username ]);    
     }
-
 
 }

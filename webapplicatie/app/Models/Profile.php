@@ -33,6 +33,13 @@ class Profile extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    
+    /**
+     * Participate in events
+     */
+    public function participate(){
+        return $this->belongsToMany(Event::class);
+    }
 
     /**
     * Get user age.
@@ -41,5 +48,4 @@ class Profile extends Model
     {
         return Carbon::parse($this->attributes['birthdate'])->age;
     }
-
 }
