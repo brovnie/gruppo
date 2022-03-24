@@ -7,7 +7,7 @@
     </div>
     <div>
         <div>
-            <img src="" alt="profile picture">
+            <img src="/storage/{{$user->profile_image}}" alt="profile picture">
         </div>
 </div>
 <div class="flex gap-5">

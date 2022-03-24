@@ -77,7 +77,7 @@ class ProfilesController extends Controller
             'new_user' => 0
         ]);
 
-       return redirect()->route('events', [ 'user' => $username ]);
+       return redirect()->route('events');
    }
     /**
      * Edit profile

@@ -7,7 +7,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-    @include('partials.mobile-nav')
     @include('partials.footer')
     </div>
 </body>
