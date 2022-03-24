@@ -24,7 +24,7 @@ class CreateProfilesTable extends Migration
             $table->date("birthdate")->nullable();
             $table->string("favorite_sport")->nullable();
             $table->string("biography")->nullable();
-            $table->string("profil_photo")->nullable();
+            $table->string("profil_photo")->default('avatar.jpg');
             $table->index("user_id");
         });
     }

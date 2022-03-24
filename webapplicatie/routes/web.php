@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/events', [App\Http\Controllers\HomeController::class, 'index'])->name('events');
+Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('events');
 
 /**
  * Routes User Profile

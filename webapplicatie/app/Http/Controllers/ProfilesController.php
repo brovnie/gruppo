@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
@@ -28,14 +29,18 @@ class ProfilesController extends Controller
     }
 
     public function storeStepOne( $username ) {
+        
         $this->authorize('createStepOne', $username->profile);
-        $username->profile->update([
-            'name' => 'test',
-            'familyname' => 'test',
-            'location' => 'Test',
-            'gender' => 'm',
-            'birthdate' => '2000-03-21',
+
+        $data = request()->validate([
+            'name' => 'required|max:255',
+            'familyname' => 'nullable',
+            'location' => 'required',
+            'gender' => 'required',
+            'birthdate' => 'required',
         ]);
+
+        $username->profile->update( $data );
 
         return redirect()->route('profile.create.step.two', [ 
             'user' => $username,
@@ -47,21 +52,32 @@ class ProfilesController extends Controller
         return view('profiles.createStepTwo', [ 'user' => $username ]);    
     }
 
-    public function storeStepTwo( $username ) {        
-        $username->profile->update([
-            'profil_photo' => 'test',
-            'favorite_sport' => 'test',
-            'biography' => 'Test',
+    public function storeStepTwo( $username, Request $request ) {      
+        
+        $data = request()->validate([
+            'profil_photo' => 'required',
+            'favorite_sport' => 'required',
+            'biography' => 'nullable|max:255',
         ]);
+
+        if (request('profil_photo')) {
+            $imagePath = $request->file('profil_photo')->store('profiles','public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(150, 150);
+            $image->save();
+
+            $imageArray = ['profil_photo' => $imagePath];
+        }
+
+        $username->profile->update(array_merge(
+            $data,
+            $imageArray ?? []
+        ));
         
         $username->update([
             'new_user' => 0
         ]);
 
-       return redirect()->route('events', [ 
-            'user' => $username,
-            'username' => $username->username ]);
-
+       return redirect()->route('events', [ 'user' => $username ]);
    }
     /**
      * Edit profile

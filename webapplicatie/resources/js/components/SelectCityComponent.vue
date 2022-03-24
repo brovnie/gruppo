@@ -1,8 +1,8 @@
 <template>
     <div>
-        <select name="location" id="location">
-        <option value="0">Select city</option>
-            <option v-for="city in cities" :value="city.name">
+        <select id="location" name="location">
+            <option disabled value="">Kies een sport</option>
+            <option v-for="city in cities" :value="city.name" :name="city.name">
                 {{ city.name }}
             </option>
         </select>
@@ -28,6 +28,6 @@ export default {
     },
     created() {
         this.getCity()
-    }
+    },
 }
 </script>

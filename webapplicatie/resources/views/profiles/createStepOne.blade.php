@@ -6,6 +6,17 @@
 <form method="post" action='/profiles/{{$user->username}}/create-step-one'>
         @csrf
         @method('PATCH')
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <div>
         <label class="text-bold" for="name">{{__('Persoonlijk')}}</label>
         <input 
@@ -33,12 +44,16 @@
         <select id="gender" name="gender">
             <option value="m">{{__('Man')}}</option>
             <option value="v">{{__('Vrouw')}}</option>
-            <option valye="x">{{__('Andere')}}</option>
+            <option value="x">{{__('Andere')}}</option>
         </select>
     </div>   
     <div>
         <label for="birthdate">{{__('Gebortedatum')}}</label>
-        <input type="date" name="birthdate" id="birthdate">
+        <input 
+            type="date" 
+            name="birthdate" 
+            id="birthdate"
+            class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}">
     </div>  
     <button type="submit" name="over">{{__('Volgende"')}}</button>
 </form>

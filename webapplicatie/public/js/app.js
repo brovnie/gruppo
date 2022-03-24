@@ -2112,7 +2112,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2602,17 +2601,20 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("label", { attrs: { for: "location" } }, [_vm._v("Locatie")]),
-    _vm._v(" "),
     _c(
       "select",
+      { attrs: { id: "location", name: "location" } },
       [
-        _c("option", [_vm._v("Select city")]),
+        _c("option", { attrs: { disabled: "", value: "" } }, [
+          _vm._v("Kies een sport"),
+        ]),
         _vm._v(" "),
         _vm._l(_vm.cities, function (city) {
-          return _c("option", { domProps: { value: city.name } }, [
-            _vm._v("\n            " + _vm._s(city.name) + "\n        "),
-          ])
+          return _c(
+            "option",
+            { attrs: { name: city.name }, domProps: { value: city.name } },
+            [_vm._v("\n            " + _vm._s(city.name) + "\n        ")]
+          )
         }),
       ],
       2
