@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <p>Single event</p>
-                    <p class="font-bold">{{$user->username}}</p>
+                    <p class="font-bold">{{$event->location}}</p>
                 </div>
             </div>
         </div>

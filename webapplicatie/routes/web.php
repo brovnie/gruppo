@@ -37,10 +37,10 @@ Route::patch('/profiles/{username}', [App\Http\Controllers\ProfilesController::c
  * Routes Post 
  */
 Route::get('/events/{event}', [App\Http\Controllers\EventsController::class, 'index'])->name('event.show');
-Route::get('/events/{event}/create', [App\Http\Controllers\EventsController::class, 'create'])->name('event.create');
-Route::post('/events/{event}', [App\Http\Controllers\ProfilesController::class, 'store'])->name('event.store');
-Route::get('/events/{event}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('event.edit');
-Route::patch('/events/{event}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('event.update');
+Route::get('/events/create', [App\Http\Controllers\EventsController::class, 'create'])->name('event.create');
+Route::post('/events', [App\Http\Controllers\EventsController::class, 'store'])->name('event.store');
+Route::get('/events/{event}/edit', [App\Http\Controllers\EventsController::class, 'edit'])->name('event.edit');
+Route::patch('/events/{event}', [App\Http\Controllers\EventsController::class, 'update'])->name('event.update');
 
 
  /**

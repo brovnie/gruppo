@@ -21,6 +21,6 @@
     </div>
 </div>
 <div> 
-    <a href="/event/create" >
+    <a href="/events/create" >Create event</a>
 </div>
 @endsection

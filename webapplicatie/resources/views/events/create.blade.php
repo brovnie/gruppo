@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
-<form>
-
-<form method="post" action='/events/{{$event->id}}/create'>
+    <div>
+    <p>{{__('Oproep maken')}}</p>
+    </div>
+<form method="post" action='/events'>
         @csrf
         @method('PATCH')
 
@@ -12,50 +13,73 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li>{{ $error }}</li>  
             @endforeach
         </ul>
     </div>
 @endif
-
     <div>
-        <label class="text-bold" for="name">{{__('Persoonlijk')}}</label>
-        <input 
-            type="text" 
-            name="name" 
-            id="name" 
-            placeholder="{{__('Voornaam')}}"  
-            class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
-            autofocus>
-
-        <input 
-            type="text" 
-            name="familyname" 
-            id="familyname" 
-            placeholder="{{__('Achternaam')}}"
-            class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
-            autofocus>
-    </div>   
-    <div> 
-        <label for="location">Locatie</label>
-        <select-city></select-city>
+        <label for="biography">{{__('Bericht')}}</label>
+        <textarea row="5" id="biography" name="biography"></textarea>
     </div>
     <div>
-        <label for="gender">{{__('Geslacht')}}</label>
-        <select id="gender" name="gender">
-            <option value="m">{{__('Man')}}</option>
-            <option value="v">{{__('Vrouw')}}</option>
-            <option value="x">{{__('Andere')}}</option>
+        <label>{{__('Sport')}}</label>
+        <select name="sport" id="sport">
+            <option value="american_football">{{__('American football')}}</option>
+            <option value="basketbal">{{__('Basketbal')}}</option>
+            <option value="cricket">{{__('Cricket')}}</option>
+            <option value="handbal">{{__('Handbal')}}</option>
+            <option value="hockey">{{__('Hockey')}}</option>
+            <option value="ijshockey">{{__('Ijshockey')}}</option>
+            <option value="korfbal">{{__('Korfbal')}}</option>
+            <option value="tennis">{{__('Tennis')}}</option>
+            <option value="voetbal">{{__('Voetbal')}}</option>
+            <option value="vollebal">{{__('Volleybal')}}</option>
+            <option value="waterpolo">{{__('Waterpolo')}}</option>
         </select>
-    </div>   
+    </div>
     <div>
-        <label for="birthdate">{{__('Gebortedatum')}}</label>
-        <input 
-            type="date" 
-            name="birthdate" 
-            id="birthdate"
-            class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}">
-    </div>  
-    <button type="submit" name="over">{{__('Volgende"')}}</button>
+        <div>
+            <label for="date">{{__('Datum')}}</label>
+            <input 
+                type="date" 
+                name="date" 
+                id="date"
+                class="form-control{{ $errors->has('datum') ? ' is-invalid' : '' }}">
+        </div>  
+        <div>
+            <label for="start_time">{{__('Tijd')}}</label>
+            <input 
+                type="time" 
+                name="start_time" 
+                id="start_time"
+                class="form-control{{ $errors->has('start_time') ? ' is-invalid' : '' }}">
+        </div>  
+    </div>
+    <div>
+        <p>{{__('Locatie')}}</p>
+    <div>
+        <div> 
+            <label for="location">{{__('Stad')}}</label>
+            <select-city></select-city>
+        </div>
+        <div>
+            <label for="location">{{__('Adress')}}</label>
+            <input 
+            type="text" 
+            name="adress" 
+            id="adress" 
+            class="form-control{{ $errors->has('adress') ? ' is-invalid' : '' }}"
+            autofocus>
+        </div>
+        <div>
+            <label for="location">{{__('Aantal personen &#40;exc. jij&#41;')}}</label>
+        </div>
+        <div>
+            <label for="location">{{__('Baal aanwezig?')}}</label>
+        </div>
+    </div>
+    <button type="submit">{{__('Volgende"')}}</button>
 </form>
+</div>
 @endsection

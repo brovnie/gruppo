@@ -24,7 +24,7 @@
             name="name" 
             id="name" 
             placeholder="{{__('Voornaam')}}"  
-            class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
+            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
             autofocus>
 
         <input 
@@ -32,7 +32,7 @@
             name="familyname" 
             id="familyname" 
             placeholder="{{__('Achternaam')}}"
-            class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"
+            class="form-control{{ $errors->has('familyname') ? ' is-invalid' : '' }}"
             autofocus>
     </div>   
     <div> 

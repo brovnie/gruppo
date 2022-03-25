@@ -18,12 +18,14 @@ class CreateEventsTable extends Migration
             $table->timestamps();
             $table->string('sport');
             $table->string('location');
+            $table->string('adress');
             $table->date('date');
             $table->time('start_time');
-            $table->string('equipment');
+            $table->boolean('equipment')->default('0');
             $table->integer('allowed_participants');
             $table->integer('registered_participants')->deault('1');
-            $table->string('match_result');
+            $table->string('match_result')->nullable();
+            $table->boolean('status')->default('1');
         });
     }
 
