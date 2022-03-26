@@ -73,7 +73,7 @@
             autofocus>
         </div>
         <div>
-            <label for="location">{{__('Aantal personen &#40;exc. jij&#41;')}}</label>
+            <label for="location">{{__('Aantal personen')}} ({{__('exc. jij')}} )</label>
         </div>
         <div>
             <label for="location">{{__('Baal aanwezig?')}}</label>

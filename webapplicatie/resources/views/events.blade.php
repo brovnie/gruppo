@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<div> 
+<div>
     <a href="/events/create" >Create event</a>
 </div>
 @endsection

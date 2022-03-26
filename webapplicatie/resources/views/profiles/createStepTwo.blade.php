@@ -6,11 +6,7 @@
 <form enctype="multipart/form-data" method="post" action='/profiles/{{$user->username}}/create-step-two'>
         @csrf
         @method('PATCH')   
-    <div>
-        <img src="" alt='profile avatar'>
-        <div class="edit-icon"></div>
-        <input type="file" id="profil_photo" name="profil_photo">
-    </div>
+    <profil-image></profil-image>
     <div>
         <label>{{__('Favoriete sport')}}</label>
         <select name="favorite_sport" id="favorite_sport">

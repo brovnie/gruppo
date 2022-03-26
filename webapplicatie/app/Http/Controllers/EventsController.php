@@ -39,6 +39,7 @@ class EventsController extends Controller
             'location' => 'required',
             'adress' => 'required|max:255',
             'date' => 'required',
+            'start_time' => 'required',
             'equipment' => 'required',
             'allowed_participants' => 'required',
         ]);
@@ -47,6 +48,7 @@ class EventsController extends Controller
         
         return $event;
     }
+    
     protected function edit(array $data)
     {
         $data = request()->validate([

@@ -1,3 +1,4 @@
+@auth
 <div>
     <div>
         <a href="/index">Home</a>
@@ -9,6 +10,7 @@
         <a href="/notifications">Notifications</a>
     </div>
     <div>
-        <a href="/profiles/{{$user->username}}">Profiles</a>
+        <a href="/profiles/{{ Auth::user()->username }}">Profiles</a>
     </div>
 </div>
+@endauth
