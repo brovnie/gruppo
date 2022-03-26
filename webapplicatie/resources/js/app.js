@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('select-city', require('./components/SelectCityComponent.vue').default);
 Vue.component('profil-image', require('./components/ProfilImageComponent.vue').default);
+Vue.component('players-range', require('./components/PlayersRangeComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

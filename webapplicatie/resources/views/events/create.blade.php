@@ -73,8 +73,10 @@
             autofocus>
         </div>
         <div>
-            <label for="location">{{__('Aantal personen')}} ({{__('exc. jij')}} )</label>
+            <label for="players">{{__('Aantal personen')}} ({{__('exc. jij')}}) </label>
+            <input type="range" min="0" max="11" name="" id="">
         </div>
+        <players-range></players-range>
         <div>
             <label for="location">{{__('Baal aanwezig?')}}</label>
         </div>

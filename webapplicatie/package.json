@@ -33,5 +33,8 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "vue-custom-range-slider": "^0.2.3"
+    }
 }
