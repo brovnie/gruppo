@@ -5,7 +5,7 @@
     <span>1</span>
     <span>12</span>
     </div>
-    <input type="text" class="hidden" name="allowed_participants" id="allowed_participants" :value='slider' v-model="slider">
+    <input class="hidden" type="text" name="allowed_participants" id="allowed_participants" :value="slider">
     </div>
 </template>
 <script>
@@ -19,7 +19,7 @@
     },
     data() {
       return {
-        slider: "1"
+        slider: "1",
       };
     },
   };

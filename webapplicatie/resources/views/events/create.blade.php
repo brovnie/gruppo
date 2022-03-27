@@ -78,7 +78,13 @@
         </div>
         <players-range></players-range>
         <div>
-            <label for="location">{{__('Baal aanwezig?')}}</label>
+            <label for="equipment">{{__('Baal aanwezig?')}}</label>
+            <div>
+                <label class="switch">
+                    <input type="checkbox" name="equipment" id="equipment">
+                    <span class="toggler round"></span>
+                </label>
+            </div>
         </div>
     </div>
     <button type="submit">{{__('Volgende"')}}</button>

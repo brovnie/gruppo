@@ -522,3 +522,62 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .switch .toggler {
+    position: absolute !important;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+  }
+  
+  .switch .toggler:before {
+    position: absolute !important;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+  }
+  
+  .switch input:checked + .toggler {
+    background-color: #2196F3;
+  }
+  
+  .switch input:focus + .toggler {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  .switch input:checked + .toggler:before {
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .switch .toggler.round {
+    border-radius: 34px;
+  }
+  
+  .switch .toggler.round:before {
+    border-radius: 50%;
+  }
