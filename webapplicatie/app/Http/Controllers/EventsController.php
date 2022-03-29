@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\Event;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
@@ -28,25 +30,30 @@ class EventsController extends Controller
 
     /**
      * Create a new event 
-     *
-     * @param  array  $data
-     * @return \App\Models\Event
      */
-    protected function store(array $data)
+    protected function store(Request $request)
     {
         $data = request()->validate([
             'sport' => 'required',
             'location' => 'required',
             'adress' => 'required|max:255',
+            'adress_nr' => 'required|max:255',
             'date' => 'required',
             'start_time' => 'required',
-            'equipment' => 'required',
+            'equipment' => 'nullable',
             'allowed_participants' => 'required',
+            'registered_participants' => 'nullable',
         ]);
+        $user = Auth::user()->id;
+        $eventCreator = ['admin_id' => $user];
+        $newData = array_merge($data, $eventCreator);
 
-        $event = Event::create($data);
+        $event = Event::create($newData);
+    
+        $profile = auth()->user()->profile;
+        $profile->participate()->attach($event->id);
         
-        return $event;
+        return redirect()->route('events', ['user' => $user]);
     }
     
     protected function edit(array $data)

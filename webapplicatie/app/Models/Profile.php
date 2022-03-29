@@ -38,7 +38,7 @@ class Profile extends Model
      * Participate in events
      */
     public function participate(){
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(Event::class)->withTimestamps();
     }
 
     /**

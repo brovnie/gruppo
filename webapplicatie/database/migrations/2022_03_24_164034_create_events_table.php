@@ -19,11 +19,13 @@ class CreateEventsTable extends Migration
             $table->string('sport');
             $table->string('location');
             $table->string('adress');
+            $table->string('adress_nr');
             $table->date('date');
             $table->time('start_time');
             $table->boolean('equipment')->default('0');
-            $table->integer('allowed_participants');
-            $table->integer('registered_participants')->deault('1');
+            $table->integer('allowed_participants')->default('1');
+            $table->integer('registered_participants')->default('1');
+            $table->unsignedBigInteger('admin_id');
             $table->string('match_result')->nullable();
             $table->boolean('status')->default('1');
         });

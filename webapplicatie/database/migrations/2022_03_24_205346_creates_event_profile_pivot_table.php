@@ -18,7 +18,7 @@ class CreatesEventProfilePivotTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('event_id');
             $table->unsignedBigInteger('profile_id');
-            $table->unsignedBigInteger('best_player_id');
+            $table->unsignedBigInteger('best_player_id')->nullable();
             $table->boolean('active')->default('1');
         });
     }

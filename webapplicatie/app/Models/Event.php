@@ -16,18 +16,22 @@ class Event extends Model
      */
     protected $fillable = [
         'sport',
-        'lcoation',
+        'location',
         'adress',
+        'adress_nr',
         'date',
         'equipment',
         'start_time',
         'favorite_sport',
         'allowed_participants',
+        'registered_participants',
+        'admin_id',
     ];   
     /**
      * Connect with participants
      */
     public function participants() {
-        return $this->belongsToMany(Profile::class);
+        
+        return $this->belongsToMany(Profile::class)->withTimestamps();
     }
 }
