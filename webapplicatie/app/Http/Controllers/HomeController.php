@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Profile;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('events', ['user' => $user]);
+        $events = Event::all();
+        $profiles= Profile::all();
+
+        return view('events', ['user' => $user, 'events' => $events, 'profiles' => $profiles]);
     }
 }

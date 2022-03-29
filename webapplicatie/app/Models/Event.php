@@ -26,6 +26,7 @@ class Event extends Model
         'allowed_participants',
         'registered_participants',
         'admin_id',
+        'description',
     ];   
     /**
      * Connect with participants

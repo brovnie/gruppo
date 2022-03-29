@@ -43,6 +43,7 @@ class EventsController extends Controller
             'equipment' => 'nullable',
             'allowed_participants' => 'required',
             'registered_participants' => 'nullable',
+            'description' => 'required|max: 255'
         ]);
         $user = Auth::user()->id;
         $eventCreator = ['admin_id' => $user];
@@ -56,21 +57,29 @@ class EventsController extends Controller
         return redirect()->route('events', ['user' => $user]);
     }
     
-    protected function edit(array $data)
+    protected function edit( $event )
+    {
+        return view('events.create', ['event' => $event]);  
+    }
+
+    protected function update( $event, Request $request )
     {
         $data = request()->validate([
             'sport' => 'required',
             'location' => 'required',
             'adress' => 'required|max:255',
+            'adress_nr' => 'required|max:255',
             'date' => 'required',
-            'equipment' => 'required',
+            'start_time' => 'required',
+            'equipment' => 'nullable',
             'allowed_participants' => 'required',
+            'registered_participants' => 'nullable',
         ]);
+        $event->update([$data]);
 
-        $event = Event::create($data);
-        
-        return $event;
+        return view('events.create', ['event' => $event]); 
     }
+
 
 
 }

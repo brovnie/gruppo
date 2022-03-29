@@ -17,8 +17,8 @@
     </div>
 @endif
     <div>
-        <label for="biography">{{__('Bericht')}}</label>
-        <textarea row="5" id="biography" name="biography"></textarea>
+        <label for="description">{{__('Bericht')}}</label>
+        <textarea row="5" id="description" name="description"></textarea>
     </div>
     <div>
         <label>{{__('Sport')}}</label>
