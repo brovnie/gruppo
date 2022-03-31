@@ -35,4 +35,20 @@ class Event extends Model
         
         return $this->belongsToMany(Profile::class)->withTimestamps();
     }
+
+    public function getParticipantsData($event) {
+        $participantsArray = array();
+        $counter = 0;
+        
+        foreach($event->participants as $participant) {
+            $userProfile = Profile::findOrFail($participant->user_id);    
+          //  $participantsArray[$counter]->profile_image = $userProfile->profil_photo;
+            //$participantsArray[$counter]->name = $userProfile->name;
+            //$participantsArray[$counter]->username = $userProfile->user->username;
+
+               // $counter++;
+            }
+        
+        return $event->participants;
+    }
 }

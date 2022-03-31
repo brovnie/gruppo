@@ -16,7 +16,8 @@ class EventsController extends Controller
      */
     public function index( $event )
     {
-        return view('events.index', [ 'event' => $event ]);    
+        $admin = Profile::where('user_id', $event->admin_id)->first();
+        return view('events.index', [ 'event' => $event, 'admin' => $admin ]);    
     }
 
     /**
@@ -79,7 +80,5 @@ class EventsController extends Controller
 
         return view('events.create', ['event' => $event]); 
     }
-
-
 
 }
