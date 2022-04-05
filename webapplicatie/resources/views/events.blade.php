@@ -24,7 +24,7 @@
                                 <img src="/storage/{{$profile->profil_photo}}" alt="profile picture">
                             </div>
                             <div>
-                                <p><span>{{$profile->name}}<span> &#64;{{$profile->user->username}} | {{$event->created_at}}</p>
+                                <p><span>{{$profile->name}}<span> &#64;{{$profile->user->username}} | {{$event->getDate('created_at')}}</p>
                             @endif
                         @endforeach
                             <div>
@@ -32,10 +32,10 @@
                             </div>
                             <div>
                                 <div>
-                                    <p>Date: {{$event->date}}</p>
+                                    <p>Date: {{$event->getDate('date')}}</p>
                                 </div>
                                 <div>
-                                    <p>Time: {{$event->start_time}}</p>
+                                    <p>Time: {{$event->getTimeWithoutSeconds()}}</p>
                                 </div>
                                 <div>
                                     <p>Sport: {{$event->sport}}</p>

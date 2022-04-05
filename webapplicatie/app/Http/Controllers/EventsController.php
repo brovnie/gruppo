@@ -17,7 +17,7 @@ class EventsController extends Controller
     public function index( $event )
     {
         $admin = Profile::where('user_id', $event->admin_id)->first();
-        return view('events.index', [ 'event' => $event, 'admin' => $admin ]);    
+        return view('events.index', [ 'event' => $event ]);    
     }
 
     /**
@@ -79,6 +79,16 @@ class EventsController extends Controller
         $event->update([$data]);
 
         return view('events.create', ['event' => $event]); 
+    }
+
+    protected function addPlayer($event, Request $request) {   
+        $user =  auth()->user();
+        $profile = auth()->user()->profile;
+
+        $profile->participate()->syncWithoutDetaching([$event->id], false);
+        $admin = Profile::where('user_id', $event->admin_id)->first();
+
+        return redirect()->route('event.show', [ 'event' => $event ]);
     }
 
 }

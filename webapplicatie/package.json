@@ -35,6 +35,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "pusher-js": "^7.0.6",
         "vue-custom-range-slider": "^0.2.3"
     }
 }

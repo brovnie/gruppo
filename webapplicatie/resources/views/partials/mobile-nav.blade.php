@@ -13,4 +13,5 @@
         <a href="/profiles/{{ Auth::user()->username }}">Profiles</a>
     </div>
 </div>
+
 @endauth

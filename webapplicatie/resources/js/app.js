@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-
+window.Pusher = require('pusher-js');
 window.Vue = require('vue').default;
 
 /**

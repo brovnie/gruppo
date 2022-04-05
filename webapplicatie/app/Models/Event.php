@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -36,19 +38,35 @@ class Event extends Model
         return $this->belongsToMany(Profile::class)->withTimestamps();
     }
 
-    public function getParticipantsData($event) {
-        $participantsArray = array();
-        $counter = 0;
+    public function isUserParticipating($participants) {
+        $user =  Auth::id();
         
-        foreach($event->participants as $participant) {
-            $userProfile = Profile::findOrFail($participant->user_id);    
-          //  $participantsArray[$counter]->profile_image = $userProfile->profil_photo;
-            //$participantsArray[$counter]->name = $userProfile->name;
-            //$participantsArray[$counter]->username = $userProfile->user->username;
-
-               // $counter++;
+        foreach($participants as $participant) {
+            if($participant->user->id == $user){
+                return true;
             }
+        }
+        return false;
+    }
+
+    public function getTimeWithoutSeconds() {
+        $time = $this->attributes['start_time'];
+        $time = Carbon::parse($time)->format('H:i');
         
-        return $event->participants;
+        return $time;
+    }
+
+    public function getDate($attribute) {
+        $date = $this->attributes[$attribute];
+        $date = Carbon::parse($date)->format('d-m-Y');
+        
+        return $date;
+    }
+
+    public function getAdmin(){
+        $admin_id = $this->attributes['admin_id'];
+        $admin = Profile::where('user_id', $admin_id )->first();
+
+        return $admin;
     }
 }
