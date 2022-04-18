@@ -65,10 +65,11 @@
                     <div>
                         <form method="post" action="/events/{{$event->id}}/team">
                         @csrf
-                            <button type="submit">Deelnemen</button>
+                                    <button type="submit" name="participant">Deelnemen</button>
                         </form>
                     </div>
                     @endif
+                    <team-list></team-list>
                 </div>
             </div>
         </div>

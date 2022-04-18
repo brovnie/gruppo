@@ -7,6 +7,7 @@ use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NewParticipant;
 
 class EventsController extends Controller
 {
@@ -82,11 +83,11 @@ class EventsController extends Controller
     }
 
     protected function addPlayer($event, Request $request) {   
-        $user =  auth()->user();
-        $profile = auth()->user()->profile;
 
+        $profile = auth()->user()->profile;
         $profile->participate()->syncWithoutDetaching([$event->id], false);
-        $admin = Profile::where('user_id', $event->admin_id)->first();
+        $team = $event->participants()->get();    
+        event(new NewParticipant($team));
 
         return redirect()->route('event.show', [ 'event' => $event ]);
     }

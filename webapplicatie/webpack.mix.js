@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+require("laravel-echo");
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,9 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js','resources/js/pusher.js','resources/js/custom.js')
+mix.js('resources/js/app.js', 'public/js', 'resources/js/custom.js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
     .postCss("resources/css/app.css", "public/css", [
-        require("tailwindcss"),
+        require("tailwindcss")
       ]);

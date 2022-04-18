@@ -1,8 +1,8 @@
 window._ = require('lodash');
 
-try {
+/*try {
     require('bootstrap');
-} catch (e) {}
+} catch (e) {}*/
 
 
 /**
@@ -22,7 +22,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
  import Echo from 'laravel-echo';
-
+ 
+ window.Pusher = require('pusher-js');
+ Pusher.logToConsole = true;
 
  window.Echo = new Echo({
      broadcaster: 'pusher',

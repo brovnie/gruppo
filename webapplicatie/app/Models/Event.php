@@ -34,7 +34,6 @@ class Event extends Model
      * Connect with participants
      */
     public function participants() {
-        
         return $this->belongsToMany(Profile::class)->withTimestamps();
     }
 
