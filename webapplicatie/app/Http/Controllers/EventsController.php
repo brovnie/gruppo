@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Profile;
 use App\Models\Event;
 use Carbon\Carbon;
@@ -86,10 +87,28 @@ class EventsController extends Controller
 
         $profile = auth()->user()->profile;
         $profile->participate()->syncWithoutDetaching([$event->id], false);
-        $team = $event->participants()->get();    
+
+        $team = $event->participants()->get();
+
+        foreach ($team as $player) {
+            $user = User::where('id', $player->user_id)->first();
+            $player->username = $user->username;
+        }
+         
         event(new NewParticipant($team));
 
         return redirect()->route('event.show', [ 'event' => $event ]);
+    }
+
+    protected function getTeam($event, Request $request) {   
+        $team = $event->participants()->get();
+
+        foreach ($team as $player) {
+            $user = User::where('id', $player->user_id)->first();
+            $player->username = $user->username;
+        }
+
+        return $team;
     }
 
 }

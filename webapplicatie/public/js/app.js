@@ -2197,7 +2197,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2210,15 +2209,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPlayer: function fetchPlayer() {
-      console.log('test');
+      var _this = this;
+
+      axios.get('/events/1/team').then(function (response) {
+        _this.team = response.data;
+      });
     },
     listenForChanges: function listenForChanges() {
+      var _this2 = this;
+
       Echo.channel('team-list').listen('.updated-team', function (data) {
-        /*{"team":[
-            {"id":1,"created_at":"2022-03-29T17:11:55.000000Z","updated_at":"2022-03-29T17:12:19.000000Z","user_id":1,"name":"Marlena","familyname":"Test","location":"Aalst","gender":"v","birthdate":"1999-12-12","favorite_sport":"tennis","biography":"testing","profil_photo":"profiles/OIkVeTauFcIhaQyRMkP6RBQeBer75AYy4ZIi4eWL.png"},
-            {"id":5,"created_at":"2022-04-12T20:35:03.000000Z","updated_at":"2022-04-12T20:35:40.000000Z","user_id":5,"name":"Marlena","familyname":"Test","location":"Amblève","gender":"x","birthdate":"2000-12-12","favorite_sport":"hockey","biography":"xxd","profil_photo":"profiles/kbERb4XrXnu379rtCcyWwb46pOq9UQAtkTKgr42W.jpg"}
-            ]}*/
-        alert(data.team[1].id);
+        alert(data.team);
+
+        _this2.team.push(data.team);
+
+        console.log(_this2.team);
       });
     }
   },
@@ -28176,19 +28181,21 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [
-      _c("p", [_vm._v("Pusher data")]),
-      _vm._v(" "),
-      _vm._l(_vm.team, function (player) {
-        return _c("div", [
-          _c("img", { attrs: { src: "", alt: "profile picture " } }),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "", alt: "" } }, [_vm._v("Link Profile")]),
-        ])
-      }),
-      _vm._v("\r\n    " + _vm._s(_vm.team) + "\r\n"),
-    ],
-    2
+    _vm._l(_vm.team, function (player, key) {
+      return _c("div", [
+        _c("img", {
+          attrs: {
+            src: "/storage/" + player.profil_photo,
+            alt: "profile picture ",
+          },
+        }),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "", alt: "" } }, [
+          _vm._v(_vm._s(player.username)),
+        ]),
+      ])
+    }),
+    0
   )
 }
 var staticRenderFns = []

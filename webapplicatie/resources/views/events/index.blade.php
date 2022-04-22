@@ -36,14 +36,7 @@
                             </div>
                     </div>
                     <div>
-                    @foreach($event->participants as $participant)
-                        @if($participant->id != $event->getAdmin()->id)
-                            <div>
-                                <img src="/storage/{{$participant->profil_photo}}" alt="profile picture " >
-                                <a href="/profiles/{{$participant->user->username}}" alt="">Link Profile</a>
-                            </div>
-                        @endif
-                    @endforeach
+                    <team-list></team-list>
                     </div>
                     <div>
                         Map
@@ -69,7 +62,7 @@
                         </form>
                     </div>
                     @endif
-                    <team-list></team-list>
+                 
                 </div>
             </div>
         </div>

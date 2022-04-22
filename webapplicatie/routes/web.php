@@ -44,6 +44,7 @@ Route::get('/events/{event}/edit', [App\Http\Controllers\EventsController::class
 Route::patch('/events/{event}', [App\Http\Controllers\EventsController::class, 'update'])->name('event.update');
 
 Route::post('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'addPlayer'])->name('event.addPlayer');
+Route::get('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'getTeam'])->name('event.getTeam');
  /**
  * Routes Apis 
  */
