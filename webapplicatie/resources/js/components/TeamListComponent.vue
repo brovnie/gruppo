@@ -21,22 +21,22 @@ export default {
     },
     methods: {
         fetchTeam() {
-
-                axios.get('/events/1/team').then((response) => {
+                let id = window.location.href.split('/').pop();
+                axios.get('/events/'+ id + '/team').then((response) => {
                     this.team = response.data;
                 })
         },
         AddNewPlayerListener() {
             Echo.channel('team-list')
                 .listen('.updated-team', (data) => {
-                    
-                   alert(data.team);
-                    this.team.push(data.team);
-                    console.log(this.team);
-                    })
+                  this.team = data.team;
+                })
         },
         DeleteNewPlayerListener(){
-            console.log('Listen for delete event');
+                Echo.channel('team-list-delete')
+                .listen('.updated-team', (data) => {
+                this.team = data.team;
+            })
         }
     },  
     computed: {

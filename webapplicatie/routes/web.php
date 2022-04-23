@@ -49,7 +49,7 @@ Route::patch('/events/{event}', [App\Http\Controllers\EventsController::class, '
 /**
  * Routes Event Team
  */
-Route::post('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'addPlayer'])->name('event.addPlayer');
+Route::patch('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'addPlayer'])->name('event.addPlayer');
 Route::get('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'getTeam'])->name('event.getTeam');
 Route::delete('/events/{event}/team/{user_id}', [App\Http\Controllers\EventsController::class, 'destroyPlayer'])->name('event.destroyPlayer');
  

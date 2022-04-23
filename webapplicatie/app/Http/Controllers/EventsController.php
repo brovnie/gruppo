@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\NewParticipant;
+use App\Events\DeletePlayer;
 
 class EventsController extends Controller
 {
@@ -118,7 +119,7 @@ class EventsController extends Controller
      * Get list of participants 
      * 
      */
-    protected function getTeam($event, Request $request) {   
+    protected function getTeam($event) {   
         $team = $event->participants()->get();
 
         foreach ($team as $player) {
@@ -133,8 +134,11 @@ class EventsController extends Controller
      * Remove player from event
      * 
      */
-    protected function destroyPlayer($event, $user_id, Request $request) {
+    protected function destroyPlayer($event, $user_id) {
         $event->participants()->detach($user_id);
+        $team = $this->getTeam($event);
+
+        event(new DeletePlayer($team));
         return redirect()->route('event.show', [ 'event' => $event ]);
     }
 

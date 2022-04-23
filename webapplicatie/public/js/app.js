@@ -2212,7 +2212,8 @@ __webpack_require__.r(__webpack_exports__);
     fetchTeam: function fetchTeam() {
       var _this = this;
 
-      axios.get('/events/1/team').then(function (response) {
+      var id = window.location.href.split('/').pop();
+      axios.get('/events/' + id + '/team').then(function (response) {
         _this.team = response.data;
       });
     },
@@ -2220,15 +2221,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       Echo.channel('team-list').listen('.updated-team', function (data) {
-        alert(data.team);
-
-        _this2.team.push(data.team);
-
-        console.log(_this2.team);
+        _this2.team = data.team;
       });
     },
     DeleteNewPlayerListener: function DeleteNewPlayerListener() {
-      console.log('Listen for delete event');
+      var _this3 = this;
+
+      Echo.channel('team-list-delete').listen('.updated-team', function (data) {
+        _this3.team = data.team;
+      });
     }
   },
   computed: {
