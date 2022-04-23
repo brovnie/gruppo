@@ -34,18 +34,26 @@ Route::get('/profiles/{username}/edit', [App\Http\Controllers\ProfilesController
 Route::patch('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
 
 /**
- * Routes Post 
+ * Routes Event Dashboard 
  */
 Route::post('/events', [App\Http\Controllers\EventsController::class, 'store'])->name('event.store');
 
+/**
+ * Routes Single Event
+ */
 Route::get('/events/create', [App\Http\Controllers\EventsController::class, 'create'])->name('event.create');
 Route::get('/events/{event}', [App\Http\Controllers\EventsController::class, 'index'])->name('event.show');
 Route::get('/events/{event}/edit', [App\Http\Controllers\EventsController::class, 'edit'])->name('event.edit');
 Route::patch('/events/{event}', [App\Http\Controllers\EventsController::class, 'update'])->name('event.update');
 
+/**
+ * Routes Event Team
+ */
 Route::post('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'addPlayer'])->name('event.addPlayer');
 Route::get('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'getTeam'])->name('event.getTeam');
- /**
+Route::delete('/events/{event}/team/{user_id}', [App\Http\Controllers\EventsController::class, 'destroyPlayer'])->name('event.destroyPlayer');
+ 
+/**
  * Routes Apis 
- */
+*/
 Route::get('/api/v1/cities', [App\Http\Controllers\APIs\BelgianCitiesApi::class, 'getCity']);

@@ -15,17 +15,18 @@ export default {
         }
     }, 
     created() {
-        this.fetchPlayer();
-        this.listenForChanges();
+        this.fetchTeam();
+        this.AddNewPlayerListener();
+        this.DeleteNewPlayerListener();
     },
     methods: {
-        fetchPlayer() {
+        fetchTeam() {
 
                 axios.get('/events/1/team').then((response) => {
                     this.team = response.data;
                 })
         },
-        listenForChanges() {
+        AddNewPlayerListener() {
             Echo.channel('team-list')
                 .listen('.updated-team', (data) => {
                     
@@ -33,6 +34,9 @@ export default {
                     this.team.push(data.team);
                     console.log(this.team);
                     })
+        },
+        DeleteNewPlayerListener(){
+            console.log('Listen for delete event');
         }
     },  
     computed: {

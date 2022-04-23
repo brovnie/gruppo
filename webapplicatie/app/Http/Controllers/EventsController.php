@@ -33,6 +33,7 @@ class EventsController extends Controller
 
     /**
      * Create a new event 
+     * 
      */
     protected function store(Request $request)
     {
@@ -60,10 +61,19 @@ class EventsController extends Controller
         return redirect()->route('events', ['user' => $user]);
     }
     
+    /**
+     * Edit event 
+     * 
+     */
     protected function edit( $event )
     {
         return view('events.create', ['event' => $event]);  
     }
+
+    /**
+     * Upadte existing event 
+     * 
+     */
 
     protected function update( $event, Request $request )
     {
@@ -83,6 +93,10 @@ class EventsController extends Controller
         return view('events.create', ['event' => $event]); 
     }
 
+    /**
+     * Add player to team 
+     * 
+     */
     protected function addPlayer($event, Request $request) {   
 
         $profile = auth()->user()->profile;
@@ -100,6 +114,10 @@ class EventsController extends Controller
         return redirect()->route('event.show', [ 'event' => $event ]);
     }
 
+    /**
+     * Get list of participants 
+     * 
+     */
     protected function getTeam($event, Request $request) {   
         $team = $event->participants()->get();
 
@@ -109,6 +127,15 @@ class EventsController extends Controller
         }
 
         return $team;
+    }
+
+    /**
+     * Remove player from event
+     * 
+     */
+    protected function destroyPlayer($event, $user_id, Request $request) {
+        $event->participants()->detach($user_id);
+        return redirect()->route('event.show', [ 'event' => $event ]);
     }
 
 }

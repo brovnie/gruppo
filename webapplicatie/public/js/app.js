@@ -2204,18 +2204,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.fetchPlayer();
-    this.listenForChanges();
+    this.fetchTeam();
+    this.AddNewPlayerListener();
+    this.DeleteNewPlayerListener();
   },
   methods: {
-    fetchPlayer: function fetchPlayer() {
+    fetchTeam: function fetchTeam() {
       var _this = this;
 
       axios.get('/events/1/team').then(function (response) {
         _this.team = response.data;
       });
     },
-    listenForChanges: function listenForChanges() {
+    AddNewPlayerListener: function AddNewPlayerListener() {
       var _this2 = this;
 
       Echo.channel('team-list').listen('.updated-team', function (data) {
@@ -2225,6 +2226,9 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log(_this2.team);
       });
+    },
+    DeleteNewPlayerListener: function DeleteNewPlayerListener() {
+      console.log('Listen for delete event');
     }
   },
   computed: {
@@ -2308,8 +2312,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-Pusher.logToConsole = true;
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // Pusher.logToConsole = true;
+
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "7425af5f37982727957e",

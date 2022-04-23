@@ -60,6 +60,11 @@ class RouteServiceProvider extends ServiceProvider
         $router->bind( 'event', function ( $event ) {
             return Event::where( 'id', $event )->firstOrFail();
         });
+        
+        $router->bind( 'user_id', function ( $user_id ) {
+            $user = User::where( 'id', $user_id )->firstOrFail();
+            return $user->id;
+        });
     }
 
     /**

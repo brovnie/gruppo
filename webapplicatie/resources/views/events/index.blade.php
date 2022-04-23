@@ -54,11 +54,19 @@
                             @endif
                         </div>
                     </div>
+                    <div>
+                        <form method="post" action="/events/{{$event->id}}/team/{{Auth::user()->id}}">
+                        @csrf
+                        @method('DELETE')  
+                                    <button type="submit" name="participant">{{ __('Verlaten') }}</button>
+                        </form>
+                    </div>
                     @else
                     <div>
                         <form method="post" action="/events/{{$event->id}}/team">
                         @csrf
-                                    <button type="submit" name="participant">Deelnemen</button>
+                        @method('PATCH')  
+                                    <button type="submit" name="participant">{{ __('Deelnemen') }}</button>
                         </form>
                     </div>
                     @endif
