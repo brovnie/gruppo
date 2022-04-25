@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\NewParticipant;
 use App\Events\DeletePlayer;
+use App\Events\ParticipantsCounter;
 
 class EventsController extends Controller
 {
@@ -95,39 +96,50 @@ class EventsController extends Controller
     }
 
     /**
-     * Add player to team 
-     * 
-     */
-    protected function addPlayer($event, Request $request) {   
-
-        $profile = auth()->user()->profile;
-        $profile->participate()->syncWithoutDetaching([$event->id], false);
-
-        $team = $event->participants()->get();
-
-        foreach ($team as $player) {
-            $user = User::where('id', $player->user_id)->first();
-            $player->username = $user->username;
-        }
-         
-        event(new NewParticipant($team));
-
-        return redirect()->route('event.show', [ 'event' => $event ]);
-    }
-
-    /**
      * Get list of participants 
      * 
      */
     protected function getTeam($event) {   
-        $team = $event->participants()->get();
-
-        foreach ($team as $player) {
+        $oldTeam = $event->participants()->get();
+        $team = [];
+        foreach ($oldTeam as $player) {
             $user = User::where('id', $player->user_id)->first();
             $player->username = $user->username;
+            array_push($team, $player);
         }
 
         return $team;
+    }
+    /**
+     * Add player to team 
+     * 
+     */
+    protected function addPlayer($event) {   
+
+        $registered = $event->registered_participants; 
+        $registered++;
+        $allowed = $event->allowed_participants;
+        
+        if($allowed <= $registered) {
+            $playersAllowed = false;
+            event(new ParticipantsCounter($playersAllowed));
+            
+            if($allowed < $registered) {
+                return redirect()->route('event.show', [ 'event' => $event ]);
+            }
+        }
+
+        $event->registered_participants = $registered;
+        $event->save();
+
+        $profile = auth()->user()->profile;
+        $profile->participate()->syncWithoutDetaching([$event->id], false);
+
+        $team = $this->getTeam($event);
+
+        event(new NewParticipant($team));
+
+        return redirect()->route('event.show', [ 'event' => $event ]);
     }
 
     /**
@@ -138,8 +150,25 @@ class EventsController extends Controller
         $event->participants()->detach($user_id);
         $team = $this->getTeam($event);
 
+        $registered = $event->registered_participants; 
+        $registered--;
+        $event->registered_participants = $registered;
+        $event->save();
+        $playersAllowed = true;
+        event(new ParticipantsCounter($playersAllowed));
         event(new DeletePlayer($team));
         return redirect()->route('event.show', [ 'event' => $event ]);
+    }
+
+    /**
+     * Check if the team is not complite
+     * 
+     */
+    protected function checkAvailabilty($event) {
+        $allowed = $event->allowed_participants;
+        $registered = $event->registered_participants;
+
+        return ($registered < $allowed) ? true : false ;
     }
 
 }

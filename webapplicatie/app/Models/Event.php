@@ -68,4 +68,12 @@ class Event extends Model
 
         return $admin;
     }
+
+    public function placeAvailable(){
+        $allowed = $this->attributes['allowed_participants'];
+        $registered = $this->attributes['registered_participants'];
+        
+        return ($registered < $allowed) ? "true" : "false" ;
+    }
+
 }

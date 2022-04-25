@@ -36,13 +36,16 @@
                             </div>
                     </div>
                     <div>
+                        <div>
+                            <p>{{ __('Team') }}  <participating-players></participating-players>/<span>{{$event->allowed_participants}}</span></p>
+                        </div>
                     <team-list></team-list>
                     </div>
                     <div>
                         Map
                     </div>
                     @if($event->isUserParticipating($event->participants))
-                    <div>
+                    <div >
                         <p>{{__('Eindstand')}}</p>
                         <div>
                             @if($event->match_results != null) 
@@ -54,23 +57,9 @@
                             @endif
                         </div>
                     </div>
-                    <div>
-                        <form method="post" action="/events/{{$event->id}}/team/{{Auth::user()->id}}">
-                        @csrf
-                        @method('DELETE')  
-                                    <button type="submit" name="participant">{{ __('Verlaten') }}</button>
-                        </form>
-                    </div>
-                    @else
-                    <div>
-                        <form method="post" action="/events/{{$event->id}}/team">
-                        @csrf
-                        @method('PATCH')  
-                                    <button type="submit" name="participant">{{ __('Deelnemen') }}</button>
-                        </form>
-                    </div>
                     @endif
-                 
+                    <match-summary></match-summary>
+                    <add-remove-player user-id="{{ Auth::user()->id }}"></add-remove-player>
                 </div>
             </div>
         </div>
