@@ -34,7 +34,7 @@ class Event extends Model
      * Connect with participants
      */
     public function participants() {
-        return $this->belongsToMany(Profile::class)->withTimestamps();
+        return $this->belongsToMany(Profile::class)->withPivot('best_player_id')->withTimestamps();
     }
 
     public function isUserParticipating($participants) {
@@ -68,12 +68,19 @@ class Event extends Model
 
         return $admin;
     }
+    
+    public function isGameToday(){
+        $today = Carbon::today()->toDateString();
+        $eventDate = $this->attributes['date'];
 
-    public function placeAvailable(){
-        $allowed = $this->attributes['allowed_participants'];
-        $registered = $this->attributes['registered_participants'];
-        
-        return ($registered < $allowed) ? "true" : "false" ;
+        return $today >= $eventDate;
     }
+
+    public function hasUserChooseBestPlayer() {
+        $bestPlayer =  Auth::user()->profile->participate;
+        $getBestPlayer = $bestPlayer[0]->pivot->best_player_id;
+        return $getBestPlayer !== null;
+    }
+
 
 }

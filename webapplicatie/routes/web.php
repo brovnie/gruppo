@@ -53,7 +53,10 @@ Route::patch('/events/{event}/team', [App\Http\Controllers\EventsController::cla
 Route::get('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'getTeam'])->name('event.getTeam');
 Route::get('/events/{event}/availabilty', [App\Http\Controllers\EventsController::class, 'checkAvailabilty'])->name('event.checkAvailabilty');
 Route::delete('/events/{event}/team/{user_id}', [App\Http\Controllers\EventsController::class, 'destroyPlayer'])->name('event.destroyPlayer');
- 
+Route::get('/events/{event}/team/{user_id}/results', [App\Http\Controllers\EventsController::class, 'indexResults'])->name('event.indexResults');
+Route::patch('/events/{event}/team/{user_id}/results', [App\Http\Controllers\EventsController::class, 'updateBestPlayer'])->name('event.updateBestPlayer');
+Route::get('/events/{event}/team/{user_id}/result2', [App\Http\Controllers\EventsController::class, 'indexResultsSmileys'])->name('event.indexResultsSmileys');
+Route::patch('/events/{event}/team/{user_id}/result2', [App\Http\Controllers\EventsController::class, 'updateSmileys'])->name('event.updateSmileys');
 /**
  * Routes Apis 
 */

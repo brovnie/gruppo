@@ -13,6 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @isset($message)
+                        <p>{{$message}}</p>
+                    @endisset
                     <div>
                             <div>
                                 <img src="/storage/{{$event->getAdmin()->profil_photo}}" alt="profile picture">
@@ -37,29 +40,26 @@
                     </div>
                     <div>
                         <div>
-                            <p>{{ __('Team') }}  <participating-players></participating-players>/<span>{{$event->allowed_participants}}</span></p>
+                            <p>{{ __('Team') }}  
+                                <participating-players></participating-players> / <span>{{$event->allowed_participants}}</span>
+                            </p>
                         </div>
                     <team-list></team-list>
                     </div>
                     <div>
                         Map
                     </div>
-                    @if($event->isUserParticipating($event->participants))
-                    <div >
-                        <p>{{__('Eindstand')}}</p>
-                        <div>
-                            @if($event->match_results != null) 
-                                <p>{{$event->match_results}}</p>
-                            @else
-                                <div>
-                                    <p>{{__('Invullen na de wedstrijd')}}</p>
-                                </div>
-                            @endif
-                        </div>
+                    <div>
+                        <p>{{ __('Best Speler') }} <p>
+                            <best-player></best-player>
+                    </div>
+                    @if ($event->isGameToday() && $event->hasUserChooseBestPlayer() == false)
+                    <div>
+                        <close-game user-id="{{ Auth::user()->id }}" event-date="{{ $event->date }}" event-start-time="{{ $event->start_time }}" ></close-game>
                     </div>
                     @endif
-                    <match-summary></match-summary>
                     <add-remove-player user-id="{{ Auth::user()->id }}"></add-remove-player>
+
                 </div>
             </div>
         </div>

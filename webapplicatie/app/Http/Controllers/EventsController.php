@@ -171,4 +171,30 @@ class EventsController extends Controller
         return ($registered < $allowed) ? true : false ;
     }
 
+    /**
+     * Show result form
+     * 
+     */
+    protected function indexResults( $event ) {
+        return view('events.results', [ 'event' => $event ]);    
+    }
+
+    /**
+     * Update best player 
+     * 
+     */
+    protected function updateBestPlayer( $event, Request $request ) {
+        $data = request()->validate([
+            'best_player_id' => 'required',
+        ]);
+
+        $user = Auth::user()->id;
+
+        $event->participants()->updateExistingPivot($user, $data);
+
+        $message = "Jij hebt de beste speler gekozen. Het resultaten komen binnenkort.";
+        return view('events.index', [ 'event' => $event, 'message' => $message ]); 
+    }
+
+
 }

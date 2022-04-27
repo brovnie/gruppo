@@ -38,7 +38,7 @@ class Profile extends Model
      * Participate in events
      */
     public function participate(){
-        return $this->belongsToMany(Event::class)->withTimestamps();
+        return $this->belongsToMany(Event::class)->withPivot('best_player_id')->withTimestamps();
     }
 
     /**
@@ -47,5 +47,14 @@ class Profile extends Model
     public function get_age()
     {
         return Carbon::parse($this->attributes['birthdate'])->age;
+    }
+
+    
+    /**
+    * Get username
+    */
+    public function get_username()
+    {
+        return "@" . $this->user()->get()[0]->username;
     }
 }

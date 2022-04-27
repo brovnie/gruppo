@@ -25,7 +25,8 @@ Vue.component('players-range', require('./components/PlayersRangeComponent.vue')
 Vue.component('team-list', require('./components/TeamListComponent.vue').default);
 Vue.component('add-remove-player', require('./components/AddRemovePlayerComponent.vue').default);
 Vue.component('participating-players', require('./components/ParticipatingPlayersComponent.vue').default);
-Vue.component('match-sumamry', require('./components/ParticipatingPlayersComponent.vue').default);
+Vue.component('best-player', require('./components/BestPlayerComponent.vue').default);
+Vue.component('close-game', require('./components/CloseGameComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to 
  * the page. Then, you may begin adding components to this application
