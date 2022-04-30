@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/events/{event}/team/{user_id}/results', [App\Http\Controllers\EventsController::class, 'indexResults'])->name('event.indexResults');  
 });
 Route::get('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'getTeam'])->name('event.getTeam');
+Route::get('/events/{event}/bestPlayer', [App\Http\Controllers\EventsController::class, 'getBestPlayer'])->name('event.getBestPlayer');
 Route::get('/events/{event}/availabilty', [App\Http\Controllers\EventsController::class, 'checkAvailabilty'])->name('event.checkAvailabilty');
 
 /**

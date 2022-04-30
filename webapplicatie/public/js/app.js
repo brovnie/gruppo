@@ -2181,9 +2181,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['bestPlayerData'],
   data: function data() {
     return {
       bestPlayer: []
@@ -2191,13 +2189,26 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getBestPlayer();
+    this.fetchBestPlayer();
   },
   methods: {
-    getBestPlayer: function getBestPlayer() {
+    fetchBestPlayer: function fetchBestPlayer() {
       var _this = this;
 
+      var id = window.location.href.split('/').pop();
+      axios.get('/events/' + id + '/bestPlayer').then(function (response) {
+        if (Object.keys(response).length != 0) {
+          _this.bestPlayer = response.data;
+        }
+      });
+    },
+    getBestPlayer: function getBestPlayer() {
+      var _this2 = this;
+
+      console.log("test before echo");
       Echo.channel('events-best-player').listen('.best-player', function (data) {
-        _this.bestPlayer = data.team;
+        _this2.bestPlayer = data.bestPlayer;
+        console.log("hello" + data.bestPlayer);
       });
     }
   },
@@ -2626,8 +2637,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); //Pusher.logToConsole = true;
-
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+Pusher.logToConsole = true;
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "7425af5f37982727957e",
@@ -28705,12 +28716,11 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.bestPlayer.length === 0
+    Object.keys(_vm.bestPlayer).length != 0
       ? _c("div", [
-          _vm._v("\r\n    \r\n" + _vm._s(_vm.bestPlayer) + "\r\n        "),
           _c("img", {
             attrs: {
-              src: "/storage/" + _vm.bestPlayer.profil_photo,
+              src: "/storage/" + _vm.bestPlayer.profile_photo,
               alt: "profile picture ",
             },
           }),

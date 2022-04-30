@@ -17,6 +17,7 @@
                         <p>{{$message}}</p>
                     @endisset
                     <div>
+                        {{Auth::user()->id}}
                             <div>
                                 <img src="/storage/{{$event->getAdmin()->profil_photo}}" alt="profile picture">
                             </div>
@@ -57,11 +58,14 @@
                     </div>
                     @if(Auth::user())
 
-                        @if ($event->isGameToday() && $event->isUserParticipating() && $event->hasUserChooseBestPlayer() == false)
+                        @if ($event->isGameToday() && $event->isUserParticipating() && $event->hasUserChooseBestPlayer() == false) 
                             <close-game user-id="{{ Auth::user()->id }}" event-date="{{ $event->date }}" event-start-time="{{ $event->start_time }}" ></close-game>
                         @endif
 
-                    <add-remove-player user-id="{{ Auth::user()->id }}"></add-remove-player>
+                        @if(Auth::user()->id !=  $event->getAdmin()->user->id)     
+                            <add-remove-player user-id="{{ Auth::user()->id }}"></add-remove-player>
+                        @endif
+
                     @else 
                         <p>{{ __('Wil je meer weten over dit speel?')}}</p>
                         <a href="/register">{{ __('Maak een account')}} </a>

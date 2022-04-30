@@ -182,6 +182,26 @@ class EventsController extends Controller
     }
 
     /**
+     * Get best player 
+     * 
+     */
+    protected function getBestPlayer($event) {        
+        $player = $event->best_player;
+
+        if($player != null) {
+            $bp_profile = Profile::where('user_id', $player)->first();
+            $bestPlayer = [
+                'id' => $bp_profile->user_id,
+                'username' => $bp_profile->user->username,
+                'profile_photo' => $bp_profile->profil_photo
+            ];
+        
+            return $bestPlayer;
+        } 
+        return false;
+    }
+
+    /**
      * Update best player 
      * 
      */
@@ -202,8 +222,7 @@ class EventsController extends Controller
             foreach($event->participants as $player) {
                 $bp_id = $player->pivot->best_player_id;
                 if($bp_id == null) {
-                    $message = "Jij hebt de beste speler gekozen. Het resultaten komen binnenkort.";
-                    return view('events.index', [ 'event' => $event, 'message' => $message ]);  
+                    return redirect()->route('event.show', [ 'event' => $event ]);  
                 }
                 array_push($bp_chosen, $bp_id);
             }
@@ -211,14 +230,18 @@ class EventsController extends Controller
             $bp_results = array_count_values($bp_chosen);
             $bp_id = array_key_first($bp_results);
 
-            $bestPlayer = Profile::where('user_id', $bp_id)->first();
+            $bp_profile = Profile::where('user_id', $bp_id)->first();
+            $bestPlayer = [
+                'id' => $bp_profile->user_id,
+                'username' => $bp_profile->user->username,
+                'profile_photo' => $bp_profile->profil_photo
+            ];
+        
             event(new BestPlayer($bestPlayer));
 
             $event->update(['best_player' => $bp_id]);
-
-            $message = "Beste speler is gekozen";
             
-            return view('events.index', [ 'event' => $event, 'message' => $message ]);  
+            return redirect()->route('event.show', [ 'event' => $event]);  
 
         } 
     }
