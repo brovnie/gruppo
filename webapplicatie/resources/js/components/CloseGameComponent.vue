@@ -36,37 +36,39 @@ export default {
         let event_ms = Number( this.eventStartTime.split(':')[0]) * 60 * 60 * 1000 + Number(this.eventStartTime.split(':')[1]) * 60 * 1000;
         let date = new Date();
         let year = date.getFullYear();
-        let month = parseInt(date.getMonth());
-        let day = parseInt(date.getDay());
+        let month = parseInt(date.getMonth()) + 1;
+        let day = parseInt(date.getDate());
         let eventsDate = this.eventDate.split('-');
 
-        if( year > eventsDate[0] ){
-            eventFinished = true;
-        } else if( year == eventsDate[0] ) {
+        if( year > eventsDate[0] ) {
+                eventFinished = true;
+        } else if( year == eventsDate[0] ) {  
             if( month < parseInt(eventsDate[1]) ){
                 eventFinished = true;
             } else if( month == parseInt(eventsDate[1]) ){
-                if(day <= parseInt(eventsDate[2]) ){
+                if(day < parseInt(eventsDate[2]) ){
                     eventFinished = true;
+                   
+                } else {
+                     eventFinished = false;
                 }
             }
         }
 
-        let test = setInterval( () => {
+
+        let openResults = setInterval( () => {
                 let today = new Date();
                 let today_ms =  today.getHours() + ':' + today.getMinutes();
                 today_ms = Number( today_ms.split(':')[0]) * 60 * 60 * 1000 + Number(today_ms.split(':')[1]) * 60 * 1000;
                if((today_ms - event_ms >= 0 || eventFinished))  {
-                   console.log("test");
                     this.hasGamefinished = true;
-                    clearInterval(test);
+                    clearInterval(openResults);
                     return;
                }
 
          } ,600);
 
          
-
     },
     methods: {
         getUrl() {

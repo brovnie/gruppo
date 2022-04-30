@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Events\NewParticipant;
 use App\Events\DeletePlayer;
 use App\Events\ParticipantsCounter;
+use App\Events\BestPlayer;
 
 class EventsController extends Controller
 {
@@ -110,8 +111,9 @@ class EventsController extends Controller
 
         return $team;
     }
+
     /**
-     * Add player to team 
+     * Add player to the team 
      * 
      */
     protected function addPlayer($event) {   
@@ -191,32 +193,33 @@ class EventsController extends Controller
         
         if($currentUser == $user) {
             $player = $event->participants()->where('user_id', $currentUser);
-            $bestPlayer = $player->get()[0]->best_player_id;
-    
-            if($bestPlayer == null){
+            $bp = $player->get()[0]->best_player_id;
+            if($bp == null){
                 $event->participants()->updateExistingPivot($user, $data);
             } 
-    
-            $participants = $event->participants()->get();
-    
-            //var_dump($participants);
-    
-            $bpChosen = false;
-    
-            foreach($participants as $participant){
-                $player = $participant->participate()->get();
-                foreach($player as $choice) {
-    
-                   // var_dump($choice->best_player_id);
-                   $test = $choice->best_player_id;
+
+            $bp_chosen = array();
+            foreach($event->participants as $player) {
+                $bp_id = $player->pivot->best_player_id;
+                if($bp_id == null) {
+                    $message = "Jij hebt de beste speler gekozen. Het resultaten komen binnenkort.";
+                    return view('events.index', [ 'event' => $event, 'message' => $message ]);  
                 }
+                array_push($bp_chosen, $bp_id);
             }
-        }
 
+            $bp_results = array_count_values($bp_chosen);
+            $bp_id = array_key_first($bp_results);
 
-      //  $message = "Jij hebt de beste speler gekozen. Het resultaten komen binnenkort.";
-        //return view('events.index', [ 'event' => $event, 'message' => $message ]); 
+            $bestPlayer = Profile::where('user_id', $bp_id)->first();
+            event(new BestPlayer($bestPlayer));
+
+            $event->update(['best_player' => $bp_id]);
+
+            $message = "Beste speler is gekozen";
+            
+            return view('events.index', [ 'event' => $event, 'message' => $message ]);  
+
+        } 
     }
-
-
 }

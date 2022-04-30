@@ -2182,14 +2182,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  props: ['bestPlayerData'],
+  data: function data() {
+    return {
+      bestPlayer: []
+    };
+  },
+  created: function created() {
+    this.getBestPlayer();
+  },
+  methods: {
+    getBestPlayer: function getBestPlayer() {
+      var _this = this;
+
+      Echo.channel('events-best-player').listen('.best-player', function (data) {
+        _this.bestPlayer = data.team;
+      });
+    }
+  },
+  computed: {
+    chosenPlayer: function chosenPlayer() {
+      return this.bestPlayer;
+    }
   }
 });
 
@@ -2242,8 +2257,8 @@ __webpack_require__.r(__webpack_exports__);
     var event_ms = Number(this.eventStartTime.split(':')[0]) * 60 * 60 * 1000 + Number(this.eventStartTime.split(':')[1]) * 60 * 1000;
     var date = new Date();
     var year = date.getFullYear();
-    var month = parseInt(date.getMonth());
-    var day = parseInt(date.getDay());
+    var month = parseInt(date.getMonth()) + 1;
+    var day = parseInt(date.getDate());
     var eventsDate = this.eventDate.split('-');
 
     if (year > eventsDate[0]) {
@@ -2252,21 +2267,22 @@ __webpack_require__.r(__webpack_exports__);
       if (month < parseInt(eventsDate[1])) {
         eventFinished = true;
       } else if (month == parseInt(eventsDate[1])) {
-        if (day <= parseInt(eventsDate[2])) {
+        if (day < parseInt(eventsDate[2])) {
           eventFinished = true;
+        } else {
+          eventFinished = false;
         }
       }
     }
 
-    var test = setInterval(function () {
+    var openResults = setInterval(function () {
       var today = new Date();
       var today_ms = today.getHours() + ':' + today.getMinutes();
       today_ms = Number(today_ms.split(':')[0]) * 60 * 60 * 1000 + Number(today_ms.split(':')[1]) * 60 * 1000;
 
       if (today_ms - event_ms >= 0 || eventFinished) {
-        console.log("test");
         _this.hasGamefinished = true;
-        clearInterval(test);
+        clearInterval(openResults);
         return;
       }
     }, 600);
@@ -2320,7 +2336,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var id = window.location.href.split('/').pop();
       axios.get('/events/' + id + '/team').then(function (response) {
-        _this.teamSize = response.data.length + 1;
+        _this.teamSize = response.data.length;
       });
     },
     AddNewPlayerListener: function AddNewPlayerListener() {
@@ -28688,32 +28704,25 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
+  return _c("div", [
+    _vm.bestPlayer.length === 0
+      ? _c("div", [
+          _vm._v("\r\n    \r\n" + _vm._s(_vm.bestPlayer) + "\r\n        "),
+          _c("img", {
+            attrs: {
+              src: "/storage/" + _vm.bestPlayer.profil_photo,
+              alt: "profile picture ",
+            },
+          }),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "", alt: "" } }, [
+            _vm._v(_vm._s(_vm.bestPlayer.username)),
           ]),
-        ]),
-      ]),
-    ])
-  },
-]
+        ])
+      : _vm._e(),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

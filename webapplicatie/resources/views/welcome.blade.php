@@ -3,7 +3,7 @@
 @include('partials.head')
     <body class="antialiased">
         @include('partials.header')
-        <div class="main">
+        <div class="main" id="app">
             <div class="grid grid-cols-2 bg-white w-full">
                 <div>
                     <h1>Gruppo slogan</h1>

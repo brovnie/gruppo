@@ -28,6 +28,7 @@ class CreateEventsTable extends Migration
             $table->integer('registered_participants')->default('1');
             $table->unsignedBigInteger('admin_id');
             $table->string('match_result')->nullable();
+            $table->string('best_player')->nullable();
             $table->boolean('status')->default('1');
         });
     }

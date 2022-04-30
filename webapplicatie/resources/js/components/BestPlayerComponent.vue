@@ -1,23 +1,37 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+<div>
+    <div v-if="bestPlayer.length === 0">
+    
+{{bestPlayer}}
+        <img :src="'/storage/' + bestPlayer.profil_photo" alt="profile picture " >
+        <a href="" alt="">{{ bestPlayer.username }}</a>
     </div>
-</template>
 
+</div>
+</template>
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
+export default {
+    props: ['bestPlayerData'],
+    data() {
+        return {
+            bestPlayer: [],
+        }
+    }, 
+    created() {
+        this.getBestPlayer();
+    },
+    methods: {
+        getBestPlayer() {
+            Echo.channel('events-best-player')
+                .listen('.best-player', (data) => {
+                  this.bestPlayer = data.team;
+                })
+        },
+    },  
+    computed: {
+        chosenPlayer() {
+            return this.bestPlayer;
         }
     }
+}
 </script>

@@ -29,6 +29,7 @@ class Event extends Model
         'registered_participants',
         'admin_id',
         'description',
+        'best_player',
     ];   
     /**
      * Connect with participants
@@ -37,9 +38,10 @@ class Event extends Model
         return $this->belongsToMany(Profile::class)->withPivot('best_player_id')->withTimestamps();
     }
 
-    public function isUserParticipating($participants) {
+    public function isUserParticipating() {
         $user =  Auth::id();
         
+        $participants = $this->participants()->get();
         foreach($participants as $participant) {
             if($participant->user->id == $user){
                 return true;
@@ -77,9 +79,14 @@ class Event extends Model
     }
 
     public function hasUserChooseBestPlayer() {
-        $bestPlayer =  Auth::user()->profile->participate;
-        $getBestPlayer = $bestPlayer[0]->pivot->best_player_id;
-        return $getBestPlayer !== null;
+
+        if($this->isUserParticipating()){
+            $bestPlayer =  Auth::user()->profile->participate;
+            
+            $getBestPlayer = $bestPlayer[0]->pivot->best_player_id;
+            return $getBestPlayer !== null;
+        }
+        return false;
     }
 
 

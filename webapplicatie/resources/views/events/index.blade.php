@@ -56,12 +56,11 @@
                             <best-player></best-player>
                     </div>
                     @if(Auth::user())
-                        @if ($event->isGameToday() && $event->hasUserChooseBestPlayer() == false)
-                    <div>
-                        <!-- It works-->
-                        <close-game user-id="{{ Auth::user()->id }}" event-date="{{ $event->date }}" event-start-time="{{ $event->start_time }}" ></close-game>
-                    </div>
+
+                        @if ($event->isGameToday() && $event->isUserParticipating() && $event->hasUserChooseBestPlayer() == false)
+                            <close-game user-id="{{ Auth::user()->id }}" event-date="{{ $event->date }}" event-start-time="{{ $event->start_time }}" ></close-game>
                         @endif
+
                     <add-remove-player user-id="{{ Auth::user()->id }}"></add-remove-player>
                     @else 
                         <p>{{ __('Wil je meer weten over dit speel?')}}</p>

@@ -19,13 +19,13 @@ export default {
         fetchTeam() {
                 let id = window.location.href.split('/').pop();
                 axios.get('/events/'+ id + '/team').then((response) => {
-                    this.teamSize = response.data.length + 1;
+                    this.teamSize = response.data.length;
                 })
         },
         AddNewPlayerListener() {
             Echo.channel('team-list')
                 .listen('.updated-team', (data) => {
-                  this.teamSize = data.team.length + 1;
+                  this.teamSize = data.team.length +1 ;
                 })
         },
         DeleteNewPlayerListener(){
