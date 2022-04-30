@@ -231,6 +231,9 @@ class EventsController extends Controller
             $bp_id = array_key_first($bp_results);
 
             $bp_profile = Profile::where('user_id', $bp_id)->first();
+
+            $bp_profile->smileys = $bp_profile->smileys + 1;
+            $bp_profile->save();
             $bestPlayer = [
                 'id' => $bp_profile->user_id,
                 'username' => $bp_profile->user->username,

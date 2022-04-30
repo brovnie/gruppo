@@ -16,11 +16,11 @@
         <p class="font-sm">Vrienden</p>
     </div>
     <div class="flex-1">
-        <p class="font-xl font-bold">21</p>
+        <p class="font-xl font-bold">{{$user->profile->participated}}</p>
         <p class="font-sm">Deelnamen</p>
     </div>
     <div class="flex-1">
-        <p class="font-xl font-bold">21</p>
+        <smileys user-id="{{$user->id}}" smileys="{{ $user->profile->smileys }}"></smileys>
         <p class="font-sm">Smileys</p>
     </div>
 </div>

@@ -25,7 +25,10 @@ class CreateProfilesTable extends Migration
             $table->string("favorite_sport")->nullable();
             $table->string("biography")->nullable();
             $table->string("profil_photo")->default('avatar.jpg');
+            $table->integer("participated")->default(0);
+            $table->integer("smileys")->default(0);
             $table->index("user_id");
+
         });
     }
 

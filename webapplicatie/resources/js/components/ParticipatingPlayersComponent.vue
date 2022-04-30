@@ -25,13 +25,13 @@ export default {
         AddNewPlayerListener() {
             Echo.channel('team-list')
                 .listen('.updated-team', (data) => {
-                  this.teamSize = data.team.length +1 ;
+                  this.teamSize = data.team.length ;
                 })
         },
         DeleteNewPlayerListener(){
                 Echo.channel('team-list-delete')
                 .listen('.updated-team', (data) => {
-                this.teamSize = data.team.length + 1;
+                this.teamSize = data.team.length;
             })
         }
     },  
