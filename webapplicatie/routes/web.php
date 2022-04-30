@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 /**
  * Routes Dashboard 
  */
@@ -49,7 +50,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/events/{event}/edit', [App\Http\Controllers\EventsController::class, 'edit'])->name('event.edit');
     Route::patch('/events/{event}', [App\Http\Controllers\EventsController::class, 'update'])->name('event.update');
 });
-
 Route::get('/events/{event}', [App\Http\Controllers\EventsController::class, 'index'])->name('event.show');
 
 /**
