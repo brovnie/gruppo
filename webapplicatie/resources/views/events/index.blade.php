@@ -46,20 +46,28 @@
                         </div>
                     <team-list></team-list>
                     </div>
+                    @if(Auth::user())
                     <div>
                         Map
                     </div>
+                    @endif
                     <div>
                         <p>{{ __('Best Speler') }} <p>
                             <best-player></best-player>
                     </div>
-                    @if ($event->isGameToday() && $event->hasUserChooseBestPlayer() == false)
+                    @if(Auth::user())
+                        @if ($event->isGameToday() && $event->hasUserChooseBestPlayer() == false)
                     <div>
+                        <!-- It works-->
                         <close-game user-id="{{ Auth::user()->id }}" event-date="{{ $event->date }}" event-start-time="{{ $event->start_time }}" ></close-game>
                     </div>
-                    @endif
+                        @endif
                     <add-remove-player user-id="{{ Auth::user()->id }}"></add-remove-player>
-
+                    @else 
+                        <p>{{ __('Wil je meer weten over dit speel?')}}</p>
+                        <a href="/register">{{ __('Maak een account')}} </a>
+                        <p>{{ __('Heb je al een account?') }} <a href="/login">{{__('Log je in')}}</a> </p>
+                    @endif
                 </div>
             </div>
         </div>

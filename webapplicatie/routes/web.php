@@ -19,44 +19,51 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+/**
+ * Routes Dashboard 
+ */
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('/events', [App\Http\Controllers\EventsController::class, 'store'])->name('event.store');
+});
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('events');
 
 /**
  * Routes User Profile
  */
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profiles/{username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
+});
 Route::get('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 Route::get('/profiles/{username}/create-step-one', [App\Http\Controllers\ProfilesController::class, 'createStepOne'])->name('profile.create.step.one');
 Route::patch('/profiles/{username}/create-step-one', [App\Http\Controllers\ProfilesController::class, 'storeStepOne'])->name('profile.store.step.one');
 Route::get('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'createStepTwo'])->name('profile.create.step.two');
 Route::patch('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'storeStepTwo'])->name('profile.store.step.two');
-Route::get('/profiles/{username}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
-Route::patch('/profiles/{username}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
 
-/**
- * Routes Event Dashboard 
- */
-Route::post('/events', [App\Http\Controllers\EventsController::class, 'store'])->name('event.store');
 
 /**
  * Routes Single Event
  */
-Route::get('/events/create', [App\Http\Controllers\EventsController::class, 'create'])->name('event.create');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/events/create', [App\Http\Controllers\EventsController::class, 'create'])->name('event.create');
+    Route::get('/events/{event}/edit', [App\Http\Controllers\EventsController::class, 'edit'])->name('event.edit');
+    Route::patch('/events/{event}', [App\Http\Controllers\EventsController::class, 'update'])->name('event.update');
+});
+
 Route::get('/events/{event}', [App\Http\Controllers\EventsController::class, 'index'])->name('event.show');
-Route::get('/events/{event}/edit', [App\Http\Controllers\EventsController::class, 'edit'])->name('event.edit');
-Route::patch('/events/{event}', [App\Http\Controllers\EventsController::class, 'update'])->name('event.update');
 
 /**
  * Routes Event Team
  */
-Route::patch('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'addPlayer'])->name('event.addPlayer');
+Route::group(['middleware' => 'auth'], function(){
+    Route::patch('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'addPlayer'])->name('event.addPlayer');
+    Route::delete('/events/{event}/team/{user_id}', [App\Http\Controllers\EventsController::class, 'destroyPlayer'])->name('event.destroyPlayer');
+    Route::patch('/events/{event}/team/{user_id}/results', [App\Http\Controllers\EventsController::class, 'updateBestPlayer'])->name('event.updateBestPlayer');  
+    Route::get('/events/{event}/team/{user_id}/results', [App\Http\Controllers\EventsController::class, 'indexResults'])->name('event.indexResults');  
+});
 Route::get('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'getTeam'])->name('event.getTeam');
 Route::get('/events/{event}/availabilty', [App\Http\Controllers\EventsController::class, 'checkAvailabilty'])->name('event.checkAvailabilty');
-Route::delete('/events/{event}/team/{user_id}', [App\Http\Controllers\EventsController::class, 'destroyPlayer'])->name('event.destroyPlayer');
-Route::get('/events/{event}/team/{user_id}/results', [App\Http\Controllers\EventsController::class, 'indexResults'])->name('event.indexResults');
-Route::patch('/events/{event}/team/{user_id}/results', [App\Http\Controllers\EventsController::class, 'updateBestPlayer'])->name('event.updateBestPlayer');
-Route::get('/events/{event}/team/{user_id}/result2', [App\Http\Controllers\EventsController::class, 'indexResultsSmileys'])->name('event.indexResultsSmileys');
-Route::patch('/events/{event}/team/{user_id}/result2', [App\Http\Controllers\EventsController::class, 'updateSmileys'])->name('event.updateSmileys');
+
 /**
  * Routes Apis 
 */

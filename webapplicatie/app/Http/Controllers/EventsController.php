@@ -183,17 +183,39 @@ class EventsController extends Controller
      * Update best player 
      * 
      */
-    protected function updateBestPlayer( $event, Request $request ) {
+    protected function updateBestPlayer( $event, $user, Request $request ) {
         $data = request()->validate([
             'best_player_id' => 'required',
         ]);
+        $currentUser = Auth::user()->id;
+        
+        if($currentUser == $user) {
+            $player = $event->participants()->where('user_id', $currentUser);
+            $bestPlayer = $player->get()[0]->best_player_id;
+    
+            if($bestPlayer == null){
+                $event->participants()->updateExistingPivot($user, $data);
+            } 
+    
+            $participants = $event->participants()->get();
+    
+            //var_dump($participants);
+    
+            $bpChosen = false;
+    
+            foreach($participants as $participant){
+                $player = $participant->participate()->get();
+                foreach($player as $choice) {
+    
+                   // var_dump($choice->best_player_id);
+                   $test = $choice->best_player_id;
+                }
+            }
+        }
 
-        $user = Auth::user()->id;
 
-        $event->participants()->updateExistingPivot($user, $data);
-
-        $message = "Jij hebt de beste speler gekozen. Het resultaten komen binnenkort.";
-        return view('events.index', [ 'event' => $event, 'message' => $message ]); 
+      //  $message = "Jij hebt de beste speler gekozen. Het resultaten komen binnenkort.";
+        //return view('events.index', [ 'event' => $event, 'message' => $message ]); 
     }
 
 

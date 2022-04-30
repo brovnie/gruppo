@@ -2214,7 +2214,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['userId', 'eventDate', 'eventStartTime'],
   data: function data() {
@@ -2239,13 +2238,33 @@ __webpack_require__.r(__webpack_exports__);
       });
       _this.isUserInTheTeam = isPlayerParticipating;
     });
+    var eventFinished = false;
     var event_ms = Number(this.eventStartTime.split(':')[0]) * 60 * 60 * 1000 + Number(this.eventStartTime.split(':')[1]) * 60 * 1000;
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = parseInt(date.getMonth());
+    var day = parseInt(date.getDay());
+    var eventsDate = this.eventDate.split('-');
+
+    if (year > eventsDate[0]) {
+      eventFinished = true;
+    } else if (year == eventsDate[0]) {
+      if (month < parseInt(eventsDate[1])) {
+        eventFinished = true;
+      } else if (month == parseInt(eventsDate[1])) {
+        if (day <= parseInt(eventsDate[2])) {
+          eventFinished = true;
+        }
+      }
+    }
+
     var test = setInterval(function () {
       var today = new Date();
       var today_ms = today.getHours() + ':' + today.getMinutes();
       today_ms = Number(today_ms.split(':')[0]) * 60 * 60 * 1000 + Number(today_ms.split(':')[1]) * 60 * 1000;
 
-      if (today_ms - event_ms >= 0) {
+      if (today_ms - event_ms >= 0 || eventFinished) {
+        console.log("test");
         _this.hasGamefinished = true;
         clearInterval(test);
         return;
@@ -28718,7 +28737,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n" + _vm._s(_vm.hasGamefinished) + "\n    "),
     _vm.hasGamefinished && _vm.isUserInTheTeam && _vm.isMatchResultEmpty
       ? _c("div", [
           _c("a", { attrs: { href: _vm.url } }, [_vm._v("Sluit het spel")]),
