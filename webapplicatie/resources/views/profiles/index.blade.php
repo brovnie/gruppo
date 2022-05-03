@@ -10,22 +10,14 @@
             <img src="/storage/{{$user->profile->profil_photo}}" alt="profile picture">
         </div>
 </div>
-<div class="flex gap-5">
-    <div class="flex-1">
-        <p class="font-xl font-bold">21</p>
-        <p class="font-sm">Vrienden</p>
-    </div>
-    <div class="flex-1">
-        <p class="font-xl font-bold">{{$user->profile->participated}}</p>
-        <participateCounter user-id="{{$user->id}}" participated="{{ $user->profile->participated }}"></participateCounter>
-        <p class="font-sm">Deelnamen</p>
-    </div>
-    <div class="flex-1">
-        <smileys user-id="{{$user->id}}" smileys="{{ $user->profile->smileys }}"></smileys>
-        <p class="font-sm">Smileys</p>
-    </div>
-</div>
 <div>
+<profile-stats 
+    user-id="{{$user->id}}" 
+    friends="4" 
+    participated="{{ $user->profile->participated }}" 
+    smileys="{{ $user->profile->smileys }}">
+</profile-stats>
+
     <p class="font-bold">Over mij</p>
     <div>
         <p>{{ $user->profile->biography ?? 'test'}}</p>

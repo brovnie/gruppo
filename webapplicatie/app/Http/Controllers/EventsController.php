@@ -13,6 +13,7 @@ use App\Events\DeletePlayer;
 use App\Events\ParticipantsCounter;
 use App\Events\BestPlayer;
 use App\Events\SmileyUpdate;
+use App\Events\ParticipatedUpdate;
 
 class EventsController extends Controller
 {
@@ -175,14 +176,6 @@ class EventsController extends Controller
     }
 
     /**
-     * Show result form
-     * 
-     */
-    protected function indexResults( $event ) {
-        return view('events.results', [ 'event' => $event ]);    
-    }
-
-    /**
      * Get best player 
      * 
      */
@@ -203,19 +196,38 @@ class EventsController extends Controller
     }
 
     /**
-     * Update best player 
+     * Show result form
      * 
      */
-    protected function updateBestPlayer( $event, $user, Request $request ) {
+    protected function indexResults( $event ) {
+        //TODO check if authenticated user is in game 
+        return view('events.results', [ 'event' => $event ]);    
+    }
+
+    /**
+     * Update game results / finish game
+     * 
+     */
+    protected function updateResults( $event, $user, Request $request ) {
         $data = request()->validate([
             'best_player_id' => 'required',
         ]);
         $currentUser = Auth::user()->id;
         
         if($currentUser == $user) {
+
+            $user_profile = Profile::where('user_id', $currentUser)->first();
+            var_dump($user_profile->participated);
+            echo "<br><br><br><br><br><br>";
+            $user_profile->participated = $user_profile->participated + 1;
+            $user_profile->save();
+            event(new ParticipatedUpdate(['userId' => $currentUser, 'count' => $user_profile->participated ]));
+
+            var_dump($user_profile->participated);
+
             $player = $event->participants()->where('user_id', $currentUser);
             $bp = $player->get()[0]->best_player_id;
-            if($bp == null){
+            if($bp == null) {
                 $event->participants()->updateExistingPivot($user, $data);
             } 
 
@@ -230,20 +242,18 @@ class EventsController extends Controller
 
             $bp_results = array_count_values($bp_chosen);
             $bp_id = array_key_first($bp_results);
-
             $bp_profile = Profile::where('user_id', $bp_id)->first();
-
             $bp_profile->smileys = $bp_profile->smileys + 1;
-            $bp_profile->save(); 
+            $bp_profile->save();
+    
             $bestPlayer = [
                 'id' => $bp_id,
                 'username' => $bp_profile->user->username,
                 'profile_photo' => $bp_profile->profil_photo,
             ];
         
-            event(new SmileyUpdate(['userId' => $bp_profile->user_id, 'smileys' =>  $bp_profile->smileys]));
-           // event(new SmileyUpdate(['userId' => $bp_profile->user_id, 'smileys' =>  $bp_profile->smileys]));
             event(new BestPlayer($bestPlayer));
+            event(new SmileyUpdate(['userId' => $bp_profile->user_id, 'smileys' =>  $bp_profile->smileys]));   
 
             $event->update(['best_player' => $bp_id]);
             
