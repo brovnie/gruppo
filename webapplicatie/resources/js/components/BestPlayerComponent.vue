@@ -16,8 +16,8 @@ export default {
         }
     }, 
     created() {
+                this.fetchBestPlayer();
         this.getBestPlayer();
-        this.fetchBestPlayer();
     },
     methods: {
         fetchBestPlayer() {
@@ -29,13 +29,11 @@ export default {
             })
         },
         getBestPlayer() {
-            console.log("test before echo");
             Echo.channel('events-best-player')
                 .listen('.best-player', (data) => {
                   this.bestPlayer = data.bestPlayer;
-                  console.log("hello" + data.bestPlayer);
                 });
-        },
+        }
     },  
     computed: {
         chosenPlayer() {

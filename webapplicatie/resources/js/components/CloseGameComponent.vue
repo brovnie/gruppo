@@ -1,5 +1,6 @@
 <template>
     <div>
+    hello
         <div v-if="hasGamefinished && isUserInTheTeam && isMatchResultEmpty">  
             <a :href="url">Sluit het spel</a>
         </div>
@@ -40,21 +41,20 @@ export default {
         let day = parseInt(date.getDate());
         let eventsDate = this.eventDate.split('-');
 
+
         if( year > eventsDate[0] ) {
                 eventFinished = true;
         } else if( year == eventsDate[0] ) {  
-            if( month < parseInt(eventsDate[1]) ){
+            if( month > parseInt(eventsDate[1]) ){
                 eventFinished = true;
             } else if( month == parseInt(eventsDate[1]) ){
-                if(day < parseInt(eventsDate[2]) ){
+                if(day > parseInt(eventsDate[2]) ){
                     eventFinished = true;
-                   
                 } else {
                      eventFinished = false;
                 }
             }
         }
-
 
         let openResults = setInterval( () => {
                 let today = new Date();

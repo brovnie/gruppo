@@ -25,7 +25,6 @@ export default {
         this.showForm();
     },
     mounted() {
-        console.log(this.userId);
                 let id = window.location.href.split('/').pop();
                 axios.get('/events/'+ id + '/team')
                 .then((response) => {

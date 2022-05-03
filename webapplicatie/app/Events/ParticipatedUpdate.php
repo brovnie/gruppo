@@ -13,15 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class SmileyUpdate implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $smiley;
+    public $participated;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($smiley)
+    public function __construct($participated)
     {
-        $this->smiley = $smiley;
+        $this->participated = $participated;
     }
 
     /**
@@ -31,11 +31,11 @@ class SmileyUpdate implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('update-smiley');
+        return new Channel('update-participated');
     }
 
     public function broadcastAs() 
     {
-        return 'count-smiley';
+        return 'count-participated';
     }
 }

@@ -2093,7 +2093,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log(this.userId);
     var id = window.location.href.split('/').pop();
     axios.get('/events/' + id + '/team').then(function (response) {
       var team = response.data;
@@ -2188,8 +2187,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.getBestPlayer();
     this.fetchBestPlayer();
+    this.getBestPlayer();
   },
   methods: {
     fetchBestPlayer: function fetchBestPlayer() {
@@ -2205,10 +2204,8 @@ __webpack_require__.r(__webpack_exports__);
     getBestPlayer: function getBestPlayer() {
       var _this2 = this;
 
-      console.log("test before echo");
       Echo.channel('events-best-player').listen('.best-player', function (data) {
         _this2.bestPlayer = data.bestPlayer;
-        console.log("hello" + data.bestPlayer);
       });
     }
   },
@@ -2232,6 +2229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -2275,10 +2273,10 @@ __webpack_require__.r(__webpack_exports__);
     if (year > eventsDate[0]) {
       eventFinished = true;
     } else if (year == eventsDate[0]) {
-      if (month < parseInt(eventsDate[1])) {
+      if (month > parseInt(eventsDate[1])) {
         eventFinished = true;
       } else if (month == parseInt(eventsDate[1])) {
-        if (day < parseInt(eventsDate[2])) {
+        if (day > parseInt(eventsDate[2])) {
           eventFinished = true;
         } else {
           eventFinished = false;
@@ -2577,34 +2575,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['userId', "smileys"],
+  props: ["userId", "smileys"],
   data: function data() {
     return {
-      updatedSmileys: ""
+      updatedSmileys: 0
     };
   },
   created: function created() {
     this.smileyListener();
-    this.AddNewPlayerListener();
   },
   methods: {
-    fetchSmileys: function fetchSmileys() {
+    smileyListener: function smileyListener() {
       var _this = this;
 
-      var id = window.location.href.split('/').pop();
-      axios.get('/events/' + id + '/smileys/' + this.userId).then(function (response) {
-        _this.updatedSmileys = response.data;
-      });
-    },
-    smileyListener: function smileyListener() {
-      var _this2 = this;
-
-      Echo.channel('update-smiley').listen('.smiley', function (data) {
-        var player_id = data.bestPlayer.userId;
-
-        if (player_id == _this2.userId) {
-          _this2.updatedSmileys = player;
+      Echo.channel('update-smiley').listen('.count-smiley', function (data) {
+        if (data.smiley.userId == _this.userId) {
+          _this.updatedSmileys = data.smiley.smileys;
         }
       });
     }
@@ -28886,6 +28875,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._v("\nhello\n    "),
     _vm.hasGamefinished && _vm.isUserInTheTeam && _vm.isMatchResultEmpty
       ? _c("div", [
           _c("a", { attrs: { href: _vm.url } }, [_vm._v("Sluit het spel")]),
@@ -29129,9 +29119,13 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("p", { staticClass: "font-xl font-bold" }, [
-      _vm._v(_vm._s(_vm.smileys)),
-    ]),
+    _vm.updatedSmileys > 0
+      ? _c("p", { staticClass: "font-xl font-bold" }, [
+          _vm._v(_vm._s(_vm.updatedSmileys)),
+        ])
+      : _c("p", { staticClass: "font-xl font-bold" }, [
+          _vm._v(_vm._s(_vm.smileys)),
+        ]),
   ])
 }
 var staticRenderFns = []

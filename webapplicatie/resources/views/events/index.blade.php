@@ -17,7 +17,6 @@
                         <p>{{$message}}</p>
                     @endisset
                     <div>
-                        {{Auth::user()->id}}
                             <div>
                                 <img src="/storage/{{$event->getAdmin()->profil_photo}}" alt="profile picture">
                             </div>

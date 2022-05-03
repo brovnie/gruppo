@@ -40,6 +40,7 @@ Route::get('/profiles/{username}/create-step-one', [App\Http\Controllers\Profile
 Route::patch('/profiles/{username}/create-step-one', [App\Http\Controllers\ProfilesController::class, 'storeStepOne'])->name('profile.store.step.one');
 Route::get('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'createStepTwo'])->name('profile.create.step.two');
 Route::patch('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'storeStepTwo'])->name('profile.store.step.two');
+Route::get('/profiles/{username}/smileys', [App\Http\Controllers\ProfilesController::class, 'getSmileys'])->name('profile.getSmileys');
 
 
 /**

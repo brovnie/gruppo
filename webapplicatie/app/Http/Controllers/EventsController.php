@@ -12,6 +12,7 @@ use App\Events\NewParticipant;
 use App\Events\DeletePlayer;
 use App\Events\ParticipantsCounter;
 use App\Events\BestPlayer;
+use App\Events\SmileyUpdate;
 
 class EventsController extends Controller
 {
@@ -233,13 +234,15 @@ class EventsController extends Controller
             $bp_profile = Profile::where('user_id', $bp_id)->first();
 
             $bp_profile->smileys = $bp_profile->smileys + 1;
-            $bp_profile->save();
+            $bp_profile->save(); 
             $bestPlayer = [
-                'id' => $bp_profile->user_id,
+                'id' => $bp_id,
                 'username' => $bp_profile->user->username,
-                'profile_photo' => $bp_profile->profil_photo
+                'profile_photo' => $bp_profile->profil_photo,
             ];
         
+            event(new SmileyUpdate(['userId' => $bp_profile->user_id, 'smileys' =>  $bp_profile->smileys]));
+           // event(new SmileyUpdate(['userId' => $bp_profile->user_id, 'smileys' =>  $bp_profile->smileys]));
             event(new BestPlayer($bestPlayer));
 
             $event->update(['best_player' => $bp_id]);

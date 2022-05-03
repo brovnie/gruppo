@@ -90,4 +90,5 @@ class ProfilesController extends Controller
         return view('profiles.edit', [ 'username' => $username ]);    
     }
 
+
 }

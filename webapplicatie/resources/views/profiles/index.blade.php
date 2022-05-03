@@ -7,7 +7,7 @@
     </div>
     <div>
         <div>
-            <img src="/storage/{{$user->profile_image}}" alt="profile picture">
+            <img src="/storage/{{$user->profile->profil_photo}}" alt="profile picture">
         </div>
 </div>
 <div class="flex gap-5">
@@ -17,6 +17,7 @@
     </div>
     <div class="flex-1">
         <p class="font-xl font-bold">{{$user->profile->participated}}</p>
+        <participateCounter user-id="{{$user->id}}" participated="{{ $user->profile->participated }}"></participateCounter>
         <p class="font-sm">Deelnamen</p>
     </div>
     <div class="flex-1">
