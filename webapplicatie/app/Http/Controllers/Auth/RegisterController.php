@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 
 class RegisterController extends Controller
@@ -52,12 +54,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $validator = Validator::make($data, [
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        Session::reflash();
+        Session::flash('register_validation_form', 'true');
+
+        return $validator;
     }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -72,7 +79,7 @@ class RegisterController extends Controller
             'new_user' => true,
             'password' => Hash::make($data['password']),
         ]);
-        
+
         Profile::create(['user_id' => $user->id]);
         
         return $user;
