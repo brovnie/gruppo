@@ -1,5 +1,5 @@
 <template>
-<div class="flex gap-5">
+<div class="grid grid-cols-3">
     <div class="flex-1">
         <p v-if="updatedSmileys > 0  " class="font-xl font-bold">{{updatedFriends}}</p>
         <p v-else class="font-xl font-bold">{{friends}}</p>

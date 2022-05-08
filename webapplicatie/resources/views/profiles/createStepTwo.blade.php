@@ -10,7 +10,7 @@
     <div>
         <label>{{__('Favoriete sport')}}</label>
         <select name="favorite_sport" id="favorite_sport">
-            <option value="american_football">{{__('American football')}}</option>
+            <option value="american football">{{__('American football')}}</option>
             <option value="basketbal">{{__('Basketbal')}}</option>
             <option value="cricket">{{__('Cricket')}}</option>
             <option value="handbal">{{__('Handbal')}}</option>

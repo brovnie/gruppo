@@ -1,6 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: "Objectivity";
+  src: url("../../public/fonts/Objectivity-Bold.otf");
+  src: url("../../public/fonts/Objectivity-Bold.woff2");
+}
+
+@font-face {
+  font-family: "ProximaNova";
+  src: url("../../public/fonts/ProximaNova-Regular.otf");
+  src: url("../../public/fonts/Objectivity-Bold.woff2");
+}
+
+body {
+  background-color: yellow;
+}
 
 /* The switch - the box around the slider */
 .switch {

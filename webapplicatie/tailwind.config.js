@@ -5,7 +5,18 @@ module.exports = {
     "./resources/**/*.vue"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#ff871f',
+        dark: '#14213d',
+        middle: '#6a6a6a',
+      },
+      fontFamily: {
+        objective: ["Objectivity", "serif"],
+        proximanova: ["ProximaNova", "serif"],
+      },
+    },
+
   },
   plugins: [],
 }

@@ -11,9 +11,12 @@ require("laravel-echo");
  |
  */
 
-mix.js('resources/js/app.js', 'public/js', 'resources/js/custom.js')
-    .vue()
-    .sass('resources/sass/app.scss', 'public/css')
-    .postCss("resources/css/app.css", "public/css", [
-        require("tailwindcss")
-      ]);
+
+  mix.js("resources/js/app.js", "public/js")
+      .js("resources/js/gruppo.js", "public/js")
+      .vue()
+      .postCss("resources/css/app.css", "public/css", [
+        require("tailwindcss"),
+  ]);
+
+  mix.disableNotifications(); 

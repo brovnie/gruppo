@@ -201,7 +201,18 @@ class EventsController extends Controller
      */
     protected function indexResults( $event ) {
         //TODO check if authenticated user is in game 
-        return view('events.results', [ 'event' => $event ]);    
+        $currentUser = Auth::user()->id;
+
+        $team = $event->participants()->get();
+        foreach ($team as $player) {
+            if($currentUser ==  $player->user_id) {
+                return view('events.results', [ 'event' => $event ]);  
+            } else {
+                return view('events.index', [ 'event' => $event ]);  
+            }
+        }
+
+  
     }
 
     /**
@@ -209,56 +220,68 @@ class EventsController extends Controller
      * 
      */
     protected function updateResults( $event, $user, Request $request ) {
+        $currentUser = Auth::user()->id;
         $data = request()->validate([
             'best_player_id' => 'required',
         ]);
-        $currentUser = Auth::user()->id;
         
         if($currentUser == $user) {
-
-            $user_profile = Profile::where('user_id', $currentUser)->first();
-            var_dump($user_profile->participated);
-            echo "<br><br><br><br><br><br>";
-            $user_profile->participated = $user_profile->participated + 1;
-            $user_profile->save();
-            event(new ParticipatedUpdate(['userId' => $currentUser, 'count' => $user_profile->participated ]));
-
-            var_dump($user_profile->participated);
-
-            $player = $event->participants()->where('user_id', $currentUser);
-            $bp = $player->get()[0]->best_player_id;
-            if($bp == null) {
-                $event->participants()->updateExistingPivot($user, $data);
-            } 
-
-            $bp_chosen = array();
-            foreach($event->participants as $player) {
-                $bp_id = $player->pivot->best_player_id;
-                if($bp_id == null) {
-                    return redirect()->route('event.show', [ 'event' => $event ]);  
-                }
-                array_push($bp_chosen, $bp_id);
-            }
-
-            $bp_results = array_count_values($bp_chosen);
-            $bp_id = array_key_first($bp_results);
-            $bp_profile = Profile::where('user_id', $bp_id)->first();
-            $bp_profile->smileys = $bp_profile->smileys + 1;
-            $bp_profile->save();
-    
-            $bestPlayer = [
-                'id' => $bp_id,
-                'username' => $bp_profile->user->username,
-                'profile_photo' => $bp_profile->profil_photo,
-            ];
-        
-            event(new BestPlayer($bestPlayer));
-            event(new SmileyUpdate(['userId' => $bp_profile->user_id, 'smileys' =>  $bp_profile->smileys]));   
-
-            $event->update(['best_player' => $bp_id]);
+            $this->updateParticipation($currentUser);
+            $this->desactivateUser($event, $currentUser);
+            $this->saveBestPlayer($event, $data, $currentUser, $user);
+            $this->setGamesBestPlayer($event);            
             
-            return redirect()->route('event.show', [ 'event' => $event]);  
-
+           // return redirect()->route('event.show', [ 'event' => $event]);  
         } 
+    }
+
+    protected function saveBestPlayer($event, $data, $currentUser, $user){
+        $player = $event->participants()->where('user_id', $currentUser);
+        $bp = $player->get()[0]->best_player_id;
+        if($bp == null) {
+            $event->participants()->updateExistingPivot($user, $data);
+        } 
+    }
+
+    protected function setGamesBestPlayer($event) {
+        $bp_chosen = array();
+
+        foreach($event->participants as $player) {
+            $bp_id = $player->pivot->best_player_id;
+            if($bp_id == null) {
+               // return redirect()->route('event.show', [ 'event' => $event ]);  
+            }
+            array_push($bp_chosen, $bp_id);
+        }
+
+        $bp_results = array_count_values($bp_chosen);
+        $bp_id = array_key_first($bp_results);
+        $bp_profile = Profile::where('user_id', $bp_id)->first();
+        $bp_profile->smileys = $bp_profile->smileys + 1;
+        $bp_profile->save();
+
+        $bestPlayer = [
+            'id' => $bp_id,
+            'username' => $bp_profile->user->username,
+            'profile_photo' => $bp_profile->profil_photo,
+        ];
+    
+        event(new BestPlayer($bestPlayer));
+        event(new SmileyUpdate(['userId' => $bp_profile->user_id, 'smileys' =>  $bp_profile->smileys]));  
+
+        $event->update(['best_player' => $bp_id]);
+    }
+
+    protected function updateParticipation($currentUser){
+        $user_profile = Profile::where('user_id', $currentUser)->first();
+        $user_profile->participated = $user_profile->participated + 1;
+        $user_profile->save();
+        event(new ParticipatedUpdate(['userId' => $currentUser, 'count' => $user_profile->participated ]));
+    }
+
+    protected function desactivateUser($event, $currentUser){
+        $player = $event->participants()->where('user_id', $currentUser);
+        var_dump($player->get()[0]->active);// = false;
+     //   $player->save();
     }
 }

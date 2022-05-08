@@ -9,12 +9,13 @@
                     <h1>Gruppo slogan</h1>
                 </div>
                 <div>
-                    <div>
+                    <div id="login">
                         @include('auth.login');
-                            <p>Nog geen account? <a>Register</a></p>
+                            <p>{{ __('Nog geen account?') }} <button id="register-trigger">{{ __('Register') }}</button></p>
                     </div>
-                    <div>
+                    <div id="register" class="hidden">
                         @include('auth.register');
+                            <p>{{ __('Al een account?') }} <button id="login-trigger">{{ __('Inloggen') }}</button></p>
                     </div>
                 </div>
             </div>

@@ -28,11 +28,11 @@
                             @endif
                         @endforeach
                             <div>
-                                <p>{{$event->description}}</p>
+                                <p class="">{{$event->description}}</p>
                             </div>
                             <div>
                                 <div>
-                                    <p>Date: {{$event->getDate('date')}}</p>
+                                    <p class="">Date: {{$event->getDate('date')}}</p>
                                 </div>
                                 <div>
                                     <p>Time: {{$event->getTimeWithoutSeconds()}}</p>
