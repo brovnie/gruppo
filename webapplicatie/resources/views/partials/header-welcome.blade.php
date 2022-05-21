@@ -1,4 +1,4 @@
-<div class="menu flex-1 col-start-2 md:col-auto bg-primary" >
+<div class="menu flex-1 col-start-2 md:col-auto " >
     <div class="block lg:hidden">
         <div class="hamburger-icon " id="menu-hamburger">
             <div class="stripe stripe-1 "></div>
@@ -7,18 +7,18 @@
         </div>
     </div>
     <ul id="menu-list" class="hidden lg:flex space-x-5 items-center static h-full justify-end" >
-        <li class="menu-item">
+        <li class="menu-item hover-white">
             <a href="#home" class="px-3 py-4"> Home </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item hover-white">
             <a href="#over" class="px-3 py-4">
                 Over Gruppo
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item hover-white">
             <a href="#team" class="py-4 px-3"> Team </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item hover-white">
             <a href="#contact" class="px-3 py-4">
                 Contact
             </a>
@@ -26,7 +26,7 @@
 @guest
      @if (Route::has('login'))
         <li class="menu-item">
-            <a href="{{ route('login') }}" class="py-1 btn btn--inline btn--orange btn--inline ">{{ __('Login') }}</a>
+            <a href="{{ route('login') }}" class="py-1 btn btn--inline btn--white btn--inline special-btn">{{ __('Login') }}</a>
         </li>
         @endif
         @else

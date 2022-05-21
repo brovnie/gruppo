@@ -2432,10 +2432,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      url: null
+      url: "/storage/profile/avatar.jpg"
     };
   },
   methods: {
@@ -29140,19 +29152,51 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("p", [_vm._v("Test image")]),
-    _vm._v(" "),
-    _vm.url
-      ? _c("img", { attrs: { alt: "profile avatar", src: _vm.url } })
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "edit-icon" }),
-    _vm._v(" "),
-    _c("input", {
-      attrs: { type: "file", id: "profil_photo", name: "profil_photo" },
-      on: { change: _vm.onImageChange },
-    }),
+  return _c("div", { staticClass: "text-center" }, [
+    _c("label", { staticClass: "relative inline-block mx-auto" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "img-wrapper profile-img--xl mx-auto mb-5 border-4 border-primary",
+        },
+        [
+          _vm.url
+            ? _c("img", {
+                staticClass: "img",
+                attrs: { alt: "profile avatar", src: _vm.url },
+              })
+            : _vm._e(),
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-icon flex items-center justify-center" }, [
+        _c(
+          "svg",
+          {
+            staticClass: "h-5 w-5",
+            attrs: {
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 20 20",
+              fill: "#FFFFFF",
+            },
+          },
+          [
+            _c("path", {
+              attrs: {
+                d: "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z",
+              },
+            }),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "absolute top-O left-0 w-full h-full opacity-0 z-10",
+        attrs: { type: "file", id: "profil_photo", name: "profil_photo" },
+        on: { change: _vm.onImageChange },
+      }),
+    ]),
   ])
 }
 var staticRenderFns = []

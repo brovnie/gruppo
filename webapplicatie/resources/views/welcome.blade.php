@@ -1,12 +1,13 @@
-@section('title', 'Test')
+@section('title', 'Gruppo')
+@section('pageClass', 'home')
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
 @include('partials.head')
-    <body class="antialiased">
+    <body class="antialiased @yield('pageClass')">
         @include('partials.header')
         <main class="main welcome-content" id="app">
-<div class="relative md:static hero-background">
-            <img class="hero-img" src="/storage/home/hero_bg.svg">
+<div class="relative md:static hero-background md:h-auto">
+            <img class="hero-img " src="/storage/home/hero_bg.svg">
             <div class="img-wrapper md:hidden">
                         <img src="/storage/logo/Logo_vertical_white.svg" class="img">
                     </div>
@@ -136,10 +137,10 @@
 </div>
                 </article>
                 <article id="contact" class="flex justify-center item-center relative">
-                    <div class="hidden md:static flex-1 img-wrapper">
+                    <div class="hidden md:block flex-1 img-wrapper">
                         <img src="/storage/logo/Logo_vertical_white.svg" class="img">
                     </div>
-                    <div class="flex-1  md:border-xl card-1 md:card-shadow">
+                    <div class="flex-1  border-xl card-1 card-shadow contact-card mx-20">
                     <h2 class="heading text-center">{{ __('Contact') }} </h2>
                     <form action="" method="post" class="contact-form">
 

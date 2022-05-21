@@ -19,8 +19,15 @@
   @apply font-poppins;
 }
 #app {
-  @apply overflow-x-hidden	;
+  @apply overflow-x-hidden flex flex-col min-h-screen;
 }
+body {
+  @apply flex flex-col justify-between min-h-screen;
+}
+main {
+  @apply flex-1;
+}
+
 article {
   margin-bottom: 60px;
   padding-top: 60px;
@@ -42,7 +49,7 @@ h2, .fake-h2 {
 .border-xl {
   border-radius: 80px;
 }
-input[type="text"],input[type="password"],input[type="email"], textarea {
+input[type="text"],input[type="password"],input[type="email"], textarea, select, input[type="date"] {
   @apply block rounded-xl w-full;
   border: 1px solid #ebeaea;
   font-family: "ProximaNova";
@@ -52,14 +59,23 @@ input[type="text"],input[type="password"],input[type="email"], textarea {
   background-color: #f7f7f7;
   margin-top: 0.8rem;
 }
-textarea {
-  @apply h-auto;
-  padding-top: 15px;
-}
 label {
   @apply font-proximanova text-dark;
   font-size: 1.125rem;
 }
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url(/storage/icons/arrow-down.svg);
+  background-repeat: no-repeat;
+  background-position: 96% 50%;
+  background-size: 25px;
+}
+textarea {
+  @apply h-auto;
+  padding-top: 15px;
+}
+
 .border-sm {
   border-radius: 15px;
 }
@@ -86,10 +102,15 @@ label {
   width: 550px;
   height: 550px
 }
+.profile-img--xl,
 .profile-img {
   @apply rounded-full overflow-hidden;
   height: 75px;
   width: 75px;
+}
+.profile-img--xl {
+  height: 100px;
+  width: 100px;
 }
 .form-check input[type="checkbox"]  {
   @apply inline-block w-auto;
@@ -102,7 +123,9 @@ label {
   @apply w-full text-center font-bold p-2 my-2 rounded-xl cursor-pointer;
   height: 50px;
 }
-
+.btn {
+  @apply cursor-pointer;
+}
 .btn--orange {
   @apply bg-primary text-white border-2 border-primary;
 }
@@ -113,12 +136,24 @@ label {
   @apply bg-white text-primary border-2 border-white no-underline;
 }
 .btn--white:hover {
-  @apply bg-primary text-white border-2 border-white cursor-pointer;
+  @apply bg-primary text-white border-2 border-white cursor-pointer !important;
 }
-
-/**/
-
+.label--btn {
+  padding: 0.7rem 1rem 0.6rem 1rem !important;
+}
+.header-spacing {
+  margin-top: 80px;
+}
+.edit-icon {
+  @apply bg-primary rounded-full;
+  height: 35px;
+  width: 35px;
+}
 /* Header */
+.header {
+  @apply w-full;
+  height: 80px;
+}
 .profile-img--nav {
   height: 55px;
   width: 55px;
@@ -140,6 +175,11 @@ label {
   @apply font-bold border-primary text-primary rounded-xl py-2;
   border-width: 2px;
 }
+.menu-item.hover-white a:hover {
+  @apply font-bold border-white text-white rounded-xl py-2;
+  border-width: 2px;
+}
+
 .menu-item .btn {
   @apply px-4 !important;
 }
@@ -148,19 +188,31 @@ label {
   height: 5px;
   border-radius: 50px;
 }
-
+.menu-scroll {
+  @apply bg-white shadow-sm;
+}
+.menu-scroll {
+  @apply bg-white shadow-sm;
+}
+.menu-scroll .menu .stripe {
+background-color: black !important;
+}
 .hamburger-icon {
-  @apply p-2 ml-auto cursor-pointer;
+  @apply p-2 ml-auto cursor-pointer mr-3 mt-3;
   height: 50px;
   width: 50px;
-  margin-top: 5px;
+  /*margin-top: 5px;*/
   margin-bottom: 5px;
   padding: 0.5rem 0.5rem 0.5rem 0;
 }
 .stripe-1, .stripe-2 {
   margin-bottom: 0.5rem;
 }
+
 /* Footer */
+footer {
+  @apply mt-auto;
+}
 footer p {
   font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
 }
@@ -182,29 +234,7 @@ main#app.welcome-content p:not(.text-base) {
   @apply flex flex-col space-y-3 xl:grid xl:grid-cols-2 w-full justify-center items-center relative;
   height: 100vh;
 }
-.hero-background {
-  height: 15vh;
-}
-.hero-background .img-wrapper,
-.hero-section .img-wrapper {
-  height: 150px;
-  width: 150px;
-}
-.hero-background .hero-img {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    transform: scale(4);
-}
-.hero-background .img-wrapper {
-  position: absolute;
-  top: 130%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 .welcome-content {
   @apply relative;
 }
@@ -255,8 +285,9 @@ div#newsletter {
 }
 div#newsletter::after {
   content: "";
-  @apply block w-screen h-full absolute top-0  bg-primary;
+  @apply block  h-full absolute top-0  bg-primary;
   left: -20vh;
+  width: 120vw;
   z-index: -1;
 }
 @media screen and(min-width: 769px) {
@@ -291,7 +322,7 @@ object-fit: contain !important;
 }
 #contact .img {
   object-fit: contain;
-  padding: 15% !important;
+  padding: 20% !important;
 }
 #contact:after {
   content: "";
@@ -306,8 +337,36 @@ object-fit: contain !important;
   top: 0px;
   z-index: -1;
 }
-
+.contact-card {
+  max-width: 1200px;
+}
 @media (max-width: 769px) {
+  .home .header {
+   height: 0;
+  }
+  .hero-background {
+    height: 15vh;
+  }
+  .hero-background .img-wrapper,
+  .hero-section .img-wrapper {
+    height: 150px;
+    width: 150px;
+  }
+  .hero-background .hero-img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      transform: scale(4);
+  }
+  .hero-background .img-wrapper {
+    position: absolute;
+    top: 130%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   .hero-section {
     height: auto !important;
     display: block;
@@ -337,7 +396,71 @@ object-fit: contain !important;
     padding-top: 32px;
     margin-bottom: 32px;
   }
+  .contact-card {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
 }
+/* Create Profile */
+.createProfile form{
+  max-width: 700px;
+}
+.createProfile {
+  @apply relative flex-1;
+}
+.createProfile:before,
+.gruppo-app:after {
+  content: "";
+  @apply block absolute w-full h-screen bg-no-repeat;
+  background-image: url(/storage/home/hero_bg.svg);
+  z-index: -1;
+  background-size: 57%;
+}
+.gruppo-app {
+  @apply relative;
+}
+.gruppo-app:after {
+  top: -47%;
+  left: 0;
+  background-position-y: top;
+  background-position-x: 150%;
+}
+.createProfile:before {
+  top: 40%;
+  left: 0;
+  background-position-y: bottom;
+  background-position-x: -51%;
+}
+.createProfile2 .edit-icon {
+  @apply absolute ;
+  right: -5px;
+  bottom: 15px;
+}
+.createProfile2 #profil_photo {
+  top:0;
+  left:0;
+  z-index: 5;
+  @apply h-full cursor-pointer;
+}
+@media screen and (max-width: 769px) {
+  .createProfile form {
+    margin-top: 15vh;
+  }
+  .createProfile .hero-background {
+    top: -80px;
+    z-index: 10;
+  }
+  .createProfile:before {
+    display: none;
+  }
+}
+@media screen and (min-width: 769px) {
+  .createProfile {
+    @apply overflow-hidden;
+  }
+
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;
