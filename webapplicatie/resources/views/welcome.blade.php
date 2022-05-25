@@ -19,7 +19,7 @@
                     </div>
                     <div class="w-full py-5 xl:py-auto">
                         <div id="login" class="@if(Session::has('register_validation_form') == true) hidden @endif border-xl auth-card card-shadow">
-                        @include('auth.login')
+                        @include('auth.login2')
                         </div>
                     </div>
                         <div id="register" class="@if(Session::has('register_validation_form') == true) active @else hidden @endif border-xl auth-card card-shadow">
@@ -92,8 +92,8 @@
                 </article>
                 <article id="team">
                     <div>
-                        <h2 class="text-center  mb-10">{{ __('Maak kennis met ons team') }} </h2>
-                        <div class="flex flex-col space-y-10 md:space-y-0 md:flex-row justify-center items-center md:mx-32 ">
+                        <h2 class="text-center  mb-10 mx-2">{{ __('Maak kennis met ons team') }} </h2>
+                        <div class="flex flex-col space-y-10 md:space-y-0 space-x-5 md:flex-row justify-center items-center md:mx-32 ">
                         <div class="card">
                             <div class="img-wrapper team-img border-md">
                                 <img class="img" src="/storage/home/michiel.jpg" alt="Michiel webdesigner ux/ui expert Gruppo">

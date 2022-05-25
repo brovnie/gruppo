@@ -1,19 +1,18 @@
 <template>
-<div class="grid grid-cols-3">
-    <div class="flex-1">
+<div class="grid grid-cols-3 mt-5">
+    <div class="flex-1  md:flex space-x-3">
         <p v-if="updatedSmileys > 0  " class="font-xl font-bold">{{updatedFriends}}</p>
-        <p v-else class="font-xl font-bold">{{friends}}</p>
+        <p v-if="updatedSmileys === 0  " class="font-xl font-bold">{{friends}}</p>
         <p class="font-sm" translate="Vrienden">Vrienden</p>
      </div>
-    <div class="flex-1">
-    {{updatedParticipations}}
+    <div class="flex-1 md:flex space-x-3">
         <p v-if="updatedParticipations > 0  " class="font-xl font-bold">{{updatedParticipations}}</p>
-        <p v-else class="font-xl font-bold">{{participated}}</p>
+        <p v-if="updatedParticipations === 0  " class="font-xl font-bold test">{{participated}}</p>
         <p class="font-sm" translate="Deelnemen">Deelnemen</p>
      </div>
-    <div class="flex-1">
-        <p v-if="updatedSmileys > 0  " class="font-xl font-bold">{{updatedSmileys}}</p>
-        <p v-else class="font-xl font-bold">{{smileys}}</p>
+    <div class="flex-1 md:flex space-x-3">
+        <p v-if="updatedSmileys > 0  " class="font-xl font-bold ">{{updatedSmileys}}</p>
+        <p v-if="updatedSmileys === 0  " class="font-xl font-bold">{{smileys}}</p>
         <p class="font-sm">Smileys</p>
      </div>
 </div>

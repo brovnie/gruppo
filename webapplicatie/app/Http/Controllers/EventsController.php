@@ -200,18 +200,15 @@ class EventsController extends Controller
      * 
      */
     protected function indexResults( $event ) {
-        //TODO check if authenticated user is in game 
         $currentUser = Auth::user()->id;
 
         $team = $event->participants()->get();
         foreach ($team as $player) {
-            if($currentUser ==  $player->user_id) {
+            if($currentUser ===  $player->user_id) {
                 return view('events.results', [ 'event' => $event ]);  
-            } else {
-                return view('events.index', [ 'event' => $event ]);  
             }
         }
-
+        return view('events.index', [ 'event' => $event ]);
   
     }
 

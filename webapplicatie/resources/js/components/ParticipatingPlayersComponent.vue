@@ -1,6 +1,6 @@
 <template>
 <div>
-    <span>{{teamSize}}</span>
+    <p>{{teamSize}}</p>
 </div>
 </template>
 <script>

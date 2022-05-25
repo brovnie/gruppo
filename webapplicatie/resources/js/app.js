@@ -27,7 +27,6 @@ Vue.component('add-remove-player', require('./components/AddRemovePlayerComponen
 Vue.component('participating-players', require('./components/ParticipatingPlayersComponent.vue').default);
 Vue.component('best-player', require('./components/BestPlayerComponent.vue').default);
 Vue.component('close-game', require('./components/CloseGameComponent.vue').default);
-Vue.component('smileys', require('./components/profile/SmileysComponent.vue').default);
 Vue.component('profile-stats', require('./components/profile/StatsComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to 

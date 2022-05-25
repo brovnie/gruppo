@@ -34,7 +34,9 @@ article {
 }
 /* Utilities */
 h1, .fake-h1,
-h2, .fake-h2 {
+h2, .fake-h2,
+h3 .fake-h3,
+h4 .fake-h4 {
   @apply font-objectivity text-dark;
 }
 h1, .fake-h1 {
@@ -43,13 +45,25 @@ h1, .fake-h1 {
 h2, .fake-h2 {
   font-size: clamp(1.75rem, 0.5rem + 1.75vw, 2.5rem) !important;
 }
+.fake-h3 {
+  font-weight: bold;
+  font-size: 1.5rem !important;
+}
+.fake-h4 {
+  font-size: clamp(1rem, 0.875rem + 0.5714vw, 1.5rem) !important;
+}
 .border-md {
   border-radius: 50px;
 }
 .border-xl {
   border-radius: 80px;
 }
-input[type="text"],input[type="password"],input[type="email"], textarea, select, input[type="date"] {
+@media screen and (min-width:769px) {
+  .md-border-xl {
+    border-radius: 80px;
+  }
+}
+input[type="text"],input[type="password"],input[type="email"], textarea, select, input[type="date"], input[type="time"] {
   @apply block rounded-xl w-full;
   border: 1px solid #ebeaea;
   font-family: "ProximaNova";
@@ -58,6 +72,9 @@ input[type="text"],input[type="password"],input[type="email"], textarea, select,
   padding: 0 25px;
   background-color: #f7f7f7;
   margin-top: 0.8rem;
+}
+input.input--hidden {
+  @apply hidden !important;
 }
 label {
   @apply font-proximanova text-dark;
@@ -84,6 +101,10 @@ textarea {
   outline: 1px solid var(--primary);
   box-shadow: rgb(0 0 0 / 7%) 0px 1px 2px, rgb(0 0 0 / 7%) 0px 2px 4px, rgb(0 0 0 / 7%) 0px 4px 8px, rgb(0 0 0 / 7%) 0px 8px 16px, rgb(0 0 0 / 7%) 0px 16px 32px, rgb(0 0 0 / 7%) 0px 32px 64px;
 }
+.pt-fix-5 {
+  padding-top: 5px !important;
+}
+
 /* Components */
 .img {
   @apply absolute w-full h-full object-cover;
@@ -102,6 +123,28 @@ textarea {
   width: 550px;
   height: 550px
 }
+.img-icon {
+  height: 23px;
+  width: 23px;
+}
+.img-app-nav {
+  height: 40px;
+  width: 40px;
+}
+.img-app-nav:not(.profile-img) {
+  height: 40px;
+  width: 45px;
+  padding-left: 4px;
+}
+.img-app-nav.profile-img {
+  height: 55px !important;
+  width: 55px !important;
+}
+.img-app-nav .img,
+.img-icon .img {
+  object-fit: contain;
+}
+
 .profile-img--xl,
 .profile-img {
   @apply rounded-full overflow-hidden;
@@ -126,20 +169,43 @@ textarea {
 .btn {
   @apply cursor-pointer;
 }
+.hidden-link {
+  @apply absolute w-full h-full z-10 opacity-0;
+}
 .btn--orange {
   @apply bg-primary text-white border-2 border-primary;
 }
-.btn--orange:hover {
+.btn--orange:hover,
+.hidden-link:hover + .btn--orange {
   @apply bg-white text-primary border-2 border-primary no-underline;
+}
+.btn--yellow {
+  @apply bg-supportive text-white border-2 border-supportive;
+}
+.btn--yellow:hover,
+.hidden-link:hover + .btn--yellow {
+  @apply bg-white text-supportive border-2 border-supportive no-underline;
 }
 .btn--white {
   @apply bg-white text-primary border-2 border-white no-underline;
 }
-.btn--white:hover {
+.btn--white:hover,
+.hidden-link:hover + .btn--white {
   @apply bg-primary text-white border-2 border-white cursor-pointer !important;
 }
 .label--btn {
   padding: 0.7rem 1rem 0.6rem 1rem !important;
+}
+.card-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+@media screen and (min-width: 769px) {
+  .md-card-shadow {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+.profile-shadow {
+  box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;
 }
 .header-spacing {
   margin-top: 80px;
@@ -149,7 +215,17 @@ textarea {
   height: 35px;
   width: 35px;
 }
-/* Header */
+.line-behind {
+ @apply relative;
+ z-index: -1; 
+}
+.slider {
+  margin-top: 10px !important;
+}
+/* 
+ *  Header 
+ *
+*/
 .header {
   @apply w-full;
   height: 80px;
@@ -165,9 +241,6 @@ textarea {
 .logo img {
   object-fit: contain !important;
 }
-.card-shadow {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
 .menu-item a {
   font-size: 18px;
 }
@@ -177,7 +250,6 @@ textarea {
 }
 .menu-item.hover-white a:hover {
   @apply font-bold border-white text-white rounded-xl py-2;
-  border-width: 2px;
 }
 
 .menu-item .btn {
@@ -208,6 +280,10 @@ background-color: black !important;
 .stripe-1, .stripe-2 {
   margin-bottom: 0.5rem;
 }
+.mobile-app-header {
+  @apply w-screen px-5;
+  height: 50px;
+}
 
 /* Footer */
 footer {
@@ -217,7 +293,8 @@ footer p {
   font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
 }
 /* Home */
-main#app.welcome-content p:not(.text-base) {
+main#app.welcome-content p:not(.text-base),
+main p {
   font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
 }
 .welcome-content h1 {
@@ -416,6 +493,10 @@ object-fit: contain !important;
   z-index: -1;
   background-size: 57%;
 }
+.gruppo-app:after {
+  @apply fixed;
+  top: -50vh;
+}
 .gruppo-app {
   @apply relative;
 }
@@ -431,6 +512,9 @@ object-fit: contain !important;
   background-position-y: bottom;
   background-position-x: -51%;
 }
+.login-page .hero-background {
+  top: -80px;
+}
 .createProfile2 .edit-icon {
   @apply absolute ;
   right: -5px;
@@ -442,6 +526,7 @@ object-fit: contain !important;
   z-index: 5;
   @apply h-full cursor-pointer;
 }
+
 @media screen and (max-width: 769px) {
   .createProfile form {
     margin-top: 15vh;
@@ -458,7 +543,31 @@ object-fit: contain !important;
   .createProfile {
     @apply overflow-hidden;
   }
+}
+/* App */
+body.gruppo-app main {
+  margin-top: 80px;
+}
 
+@media screen and (min-width: 769px) {
+  .menu-app-pc{
+    height: 75vh;
+  }
+  
+}
+.readmore-btn {
+  padding-top: 12px !important;
+}
+@media screen and (max-width: 769px) {
+  .app--manu {
+    bottom:0;
+    z-index: 20;
+    @apply bg-white flex shadow-sm w-full border-grayborder !important;
+    border-top: 2px solid ;
+  }
+  body.gruppo-app.user-profile main {
+    margin-top: 50px;
+  }
 }
 
 /* The switch - the box around the slider */
@@ -523,3 +632,69 @@ object-fit: contain !important;
   .switch .toggler.round:before {
     border-radius: 50%;
   }
+
+  /* Login page */
+  .login-page .hero-background {
+    top: -80px;
+  }
+  @media screen and (max-width: 769px) {
+    .login-page #login {
+      margin-top: 15vh;
+    }
+  }
+
+  /* Single event */
+
+  .img--best-player {
+    @apply border-2 border-supportive;
+  }
+
+  /* Create event */
+  .card--make-event {
+    padding: 2.5rem 3rem 2.5rem 3rem;
+    background-color: white !important;
+  }
+  @media screen and (max-width: 769px ) {
+    .wrapper-btn--create-event {
+      @apply relative bg-primary block !important;
+      height: 60px;
+      width: 60px;
+      bottom: 15vh;
+    }
+    .btn--create-event  {
+      height: 60px;
+      width: 60px;
+      bottom: 100px;
+      right: 5%;
+      @apply rounded-full bg-primary;
+    }
+    .btn--create-event svg {
+      color: white;
+    }
+  }
+
+  input.hidden-radio {
+    @apply absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer !important;
+    z-index: 5;
+  }
+  input.hidden-radio + .input--checked-border {
+    @apply bg-transparent;
+  }
+  input.hidden-radio:checked + .input--checked-border {
+    @apply bg-supportive absolute rounded-full;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    z-index: -1;
+    left: -4px;
+    top: -4px;
+    filter: blur(3px);
+  }
+.radio--select-img{
+  overflow: unset !important;
+}
+.radio--select-img .img {
+  @apply rounded-full;
+}
+.results--single-player {
+  @apply flex flex-col justify-center items-center space-y-5;
+}

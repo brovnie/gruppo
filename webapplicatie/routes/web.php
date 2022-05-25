@@ -40,6 +40,7 @@ Route::get('/profiles/{username}/create-step-one', [App\Http\Controllers\Profile
 Route::patch('/profiles/{username}/create-step-one', [App\Http\Controllers\ProfilesController::class, 'storeStepOne'])->name('profile.store.step.one');
 Route::get('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'createStepTwo'])->name('profile.create.step.two');
 Route::patch('/profiles/{username}/create-step-two', [App\Http\Controllers\ProfilesController::class, 'storeStepTwo'])->name('profile.store.step.two');
+Route::get('/profiles/{username}/my-events', [App\Http\Controllers\ProfilesController::class, 'myEvents'])->name('profile.myevents');
 
 /**
  * Routes Single Event
@@ -63,6 +64,14 @@ Route::group(['middleware' => 'auth'], function(){
 Route::get('/events/{event}/team', [App\Http\Controllers\EventsController::class, 'getTeam'])->name('event.getTeam');
 Route::get('/events/{event}/bestPlayer', [App\Http\Controllers\EventsController::class, 'getBestPlayer'])->name('event.getBestPlayer');
 Route::get('/events/{event}/availabilty', [App\Http\Controllers\EventsController::class, 'checkAvailabilty'])->name('event.checkAvailabilty');
+
+
+/**
+ * Routes Notifications
+*/
+Route::group(['middleware' => 'auth'], function() {
+Route::get('/notifications', [App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.show');
+});
 
 /**
  * Routes Apis 

@@ -1,4 +1,4 @@
-<div class="menu flex-1 col-start-2 md:col-auto " >
+<div class="menu flex-1 col-start-2 md:col-start-3 md:col-auto " >
     <div class="block lg:hidden">
         <div class="hamburger-icon " id="menu-hamburger">
             <div class="stripe stripe-1 "></div>

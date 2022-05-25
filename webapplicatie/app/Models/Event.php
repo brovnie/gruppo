@@ -89,5 +89,9 @@ class Event extends Model
         return false;
     }
 
+    public function getAdminFromEvent($event) {
+        $admin = Profile::where('user_id', $event->admin_id)->first();
+        return $admin;
+    }
 
 }

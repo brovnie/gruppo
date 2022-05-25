@@ -57,4 +57,9 @@ class Profile extends Model
     {
         return "@" . $this->user()->get()[0]->username;
     }
+
+    public function getAdminFromEvent($event) {
+        $admin = Profile::where('user_id', $event->admin_id)->first();
+        return $admin;
+    }
 }

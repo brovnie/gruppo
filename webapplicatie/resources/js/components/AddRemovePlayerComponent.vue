@@ -1,10 +1,10 @@
 <template>
     <div>
-        <form  v-if="(freePlaces == true || freePlaces == 1) && isUserInTheTeam == false" @submit.prevent="addPlayer()">  
-                <button type="submit" name="participant">Deelnemen</button>
+        <form  v-if="(freePlaces == true || freePlaces == 1) && isUserInTheTeam == false" @submit.prevent="addPlayer()" class="mx-5">  
+                <button class="btn btn--inline btn--orange w-auto block " type="submit" name="participant">Deelnemen</button>
         </form>
-        <form  v-if="isUserInTheTeam" @submit.prevent="removePlayer()">  
-                <button type="submit" name="participant">Verlaten</button>
+        <form  v-if="isUserInTheTeam" @submit.prevent="removePlayer()" class="mx-5">  
+                <button class="btn btn--inline btn--white w-auto block " type="submit" name="participant">Verlaten</button>
         </form>
     </div>
 </template>

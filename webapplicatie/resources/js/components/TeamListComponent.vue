@@ -1,8 +1,10 @@
 <template>
-<div>
+<div class="flex">
     <div v-for="(player, key) in team">
-        <img :src="'/storage/' + player.profil_photo" alt="profile picture " >
-        <a href="" alt="">{{ player.username }}</a>
+        <div class="img-wrapper img-wrapper--circle profile-img img-app-nav mr-5 pr-2 profile-shadow">
+            <img class="img" :src="'/storage/' + player.profil_photo" alt="profile picture " >
+            <a href="" alt="">{{ player.username }}</a>
+        </div>
     </div>
 
 </div>

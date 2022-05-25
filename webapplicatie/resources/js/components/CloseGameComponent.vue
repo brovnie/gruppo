@@ -1,8 +1,7 @@
 <template>
     <div>
-    hello
-        <div v-if="hasGamefinished && isUserInTheTeam && isMatchResultEmpty">  
-            <a :href="url">Sluit het spel</a>
+        <div v-if="hasGamefinished && isUserInTheTeam && isMatchResultEmpty" class="mx-5">  
+            <a class="btn btn--inline btn--orange w-auto block" :href="url">Sluit het spel</a>
         </div>
     </div>
 </template>

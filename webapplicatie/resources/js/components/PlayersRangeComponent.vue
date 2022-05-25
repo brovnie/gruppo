@@ -1,11 +1,7 @@
 <template>
     <div>
         <custom-slider min="1" max="12" step="1" v-model="slider"/>
-        <div>
-            <span>1</span>
-            <span>12</span>
-        </div>
-        <input class="hidden" type="text" name="allowed_participants" id="allowed_participants" :value="slider">
+        <input class="input--hidden" type="text" name="allowed_participants" id="allowed_participants" :value="slider">
     </div>
 </template>
 

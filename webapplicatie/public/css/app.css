@@ -469,6 +469,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .relative {
   position: relative;
 }
+.top-0 {
+  top: 0px;
+}
 .left-0 {
   left: 0px;
 }
@@ -481,6 +484,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .order-1 {
   order: 1;
 }
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+.col-span-9 {
+  grid-column: span 9 / span 9;
+}
 .col-start-2 {
   grid-column-start: 2;
 }
@@ -491,6 +500,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
   margin-right: auto;
 }
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .mx-20 {
   margin-left: 5rem;
   margin-right: 5rem;
@@ -498,6 +519,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
+}
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+.mx-10 {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .mt-5 {
   margin-top: 1.25rem;
@@ -529,11 +562,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.mr-5 {
+  margin-right: 1.25rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
 .mt-3 {
   margin-top: 0.75rem;
+}
+.ml-0 {
+  margin-left: 0px;
+}
+.mr-auto {
+  margin-right: auto;
 }
 .mr-10 {
   margin-right: 2.5rem;
@@ -553,6 +595,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hidden {
   display: none;
 }
+.h-0 {
+  height: 0px;
+}
+.h-10 {
+  height: 2.5rem;
+}
 .h-full {
   height: 100%;
 }
@@ -562,17 +610,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-5 {
   height: 1.25rem;
 }
+.w-auto {
+  width: auto;
+}
+.w-0 {
+  width: 0px;
+}
+.w-10 {
+  width: 2.5rem;
+}
 .w-full {
   width: 100%;
 }
 .w-8 {
   width: 2rem;
 }
-.w-auto {
-  width: auto;
-}
 .w-5 {
   width: 1.25rem;
+}
+.w-screen {
+  width: 100vw;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -582,6 +639,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -604,26 +667,37 @@ Ensure the default browser behavior of the `hidden` attribute.
 .justify-evenly {
   justify-content: space-evenly;
 }
+.gap-3 {
+  gap: 0.75rem;
+}
 .gap-5 {
   gap: 1.25rem;
 }
 .gap-20 {
   gap: 5rem;
 }
-.space-y-10 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
-}
 .space-x-5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.25rem * var(--tw-space-x-reverse));
   margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-y-10 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+}
 .space-y-5 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+.rounded-full {
+  border-radius: 9999px;
 }
 .border-4 {
   border-width: 4px;
@@ -683,6 +757,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.pb-5 {
+  padding-bottom: 1.25rem;
+}
 .pb-10 {
   padding-bottom: 2.5rem;
 }
@@ -691,6 +772,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-2 {
   padding-top: 0.5rem;
+}
+.pr-2 {
+  padding-right: 0.5rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
+}
+.pt-5 {
+  padding-top: 1.25rem;
+}
+.text-left {
+  text-align: left;
 }
 .text-center {
   text-align: center;
@@ -707,6 +803,13 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .font-bold {
   font-weight: 700;
+}
+.font-normal {
+  font-weight: 400;
+}
+.text-graytext {
+  --tw-text-opacity: 1;
+  color: rgb(154 154 154 / var(--tw-text-opacity));
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -764,7 +867,7 @@ article {
   padding-top: 60px;
 }
 /* Utilities */
-h1, .fake-h1, h2, .fake-h2 {
+h1, .fake-h1, h2, .fake-h2, h3 .fake-h3, h4 .fake-h4 {
   font-family: Objectivity, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --tw-text-opacity: 1;
   color: rgb(20 33 61 / var(--tw-text-opacity));
@@ -775,18 +878,30 @@ h1, .fake-h1 {
 h2, .fake-h2 {
   font-size: clamp(1.75rem, 0.5rem + 1.75vw, 2.5rem) !important;
 }
+.fake-h3 {
+  font-weight: bold;
+  font-size: 1.5rem !important;
+}
+.fake-h4 {
+  font-size: clamp(1rem, 0.875rem + 0.5714vw, 1.5rem) !important;
+}
 .border-md {
   border-radius: 50px;
 }
 .border-xl {
   border-radius: 80px;
 }
-input[type="text"], input[type="password"], input[type="email"], textarea, select, input[type="date"] {
+@media screen and (min-width:769px) {
+  .md-border-xl {
+    border-radius: 80px;
+  }
+}
+input[type="text"], input[type="password"], input[type="email"], textarea, select, input[type="date"], input[type="time"] {
   display: block;
   width: 100%;
   border-radius: 0.75rem;
 }
-input[type="text"],input[type="password"],input[type="email"], textarea, select, input[type="date"] {
+input[type="text"],input[type="password"],input[type="email"], textarea, select, input[type="date"], input[type="time"] {
   border: 1px solid #ebeaea;
   font-family: "ProximaNova";
   font-size: 1.125rem;
@@ -794,6 +909,9 @@ input[type="text"],input[type="password"],input[type="email"], textarea, select,
   padding: 0 25px;
   background-color: #f7f7f7;
   margin-top: 0.8rem;
+}
+input.input--hidden {
+  display: none !important;
 }
 label {
   font-family: ProximaNova, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
@@ -823,6 +941,10 @@ textarea {
   outline: 1px solid var(--primary);
   box-shadow: rgb(0 0 0 / 7%) 0px 1px 2px, rgb(0 0 0 / 7%) 0px 2px 4px, rgb(0 0 0 / 7%) 0px 4px 8px, rgb(0 0 0 / 7%) 0px 8px 16px, rgb(0 0 0 / 7%) 0px 16px 32px, rgb(0 0 0 / 7%) 0px 32px 64px;
 }
+.pt-fix-5 {
+  padding-top: 5px !important;
+}
+
 /* Components */
 .img {
   position: absolute;
@@ -847,6 +969,29 @@ textarea {
   width: 550px;
   height: 550px
 }
+.img-icon {
+  height: 23px;
+  width: 23px;
+}
+.img-app-nav {
+  height: 40px;
+  width: 40px;
+}
+.img-app-nav:not(.profile-img) {
+  height: 40px;
+  width: 45px;
+  padding-left: 4px;
+}
+.img-app-nav.profile-img {
+  height: 55px !important;
+  width: 55px !important;
+}
+.img-app-nav .img,
+.img-icon .img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .profile-img--xl, .profile-img {
   overflow: hidden;
   border-radius: 9999px;
@@ -881,6 +1026,13 @@ textarea {
 .btn {
   cursor: pointer;
 }
+.hidden-link {
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
 .btn--orange {
   border-width: 2px;
   --tw-border-opacity: 1;
@@ -890,7 +1042,7 @@ textarea {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.btn--orange:hover {
+.btn--orange:hover, .hidden-link:hover + .btn--orange {
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgb(255 135 31 / var(--tw-border-opacity));
@@ -898,6 +1050,26 @@ textarea {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 135 31 / var(--tw-text-opacity));
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
+.btn--yellow {
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(252 163 17 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 163 17 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.btn--yellow:hover, .hidden-link:hover + .btn--yellow {
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(252 163 17 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(252 163 17 / var(--tw-text-opacity));
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
 }
@@ -912,7 +1084,7 @@ textarea {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
 }
-.btn--white:hover {
+.btn--white:hover, .hidden-link:hover + .btn--white {
   cursor: pointer !important;
   border-width: 2px !important;
   --tw-border-opacity: 1 !important;
@@ -925,6 +1097,17 @@ textarea {
 .label--btn {
   padding: 0.7rem 1rem 0.6rem 1rem !important;
 }
+.card-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+@media screen and (min-width: 769px) {
+  .md-card-shadow {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+.profile-shadow {
+  box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;
+}
 .header-spacing {
   margin-top: 80px;
 }
@@ -935,7 +1118,17 @@ textarea {
   height: 35px;
   width: 35px;
 }
-/* Header */
+.line-behind {
+  position: relative;
+ z-index: -1;
+}
+.slider {
+  margin-top: 10px !important;
+}
+/* 
+ *  Header 
+ *
+*/
 .header {
   width: 100%;
   height: 80px;
@@ -951,9 +1144,6 @@ textarea {
 .logo img {
   -o-object-fit: contain !important;
      object-fit: contain !important;
-}
-.card-shadow {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .menu-item a {
   font-size: 18px;
@@ -978,7 +1168,6 @@ textarea {
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-  border-width: 2px;
 }
 
 .menu-item .btn {
@@ -1018,6 +1207,12 @@ background-color: black !important;
 .stripe-1, .stripe-2 {
   margin-bottom: 0.5rem;
 }
+.mobile-app-header {
+  width: 100vw;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  height: 50px;
+}
 
 /* Footer */
 footer {
@@ -1027,7 +1222,8 @@ footer p {
   font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
 }
 /* Home */
-main#app.welcome-content p:not(.text-base) {
+main#app.welcome-content p:not(.text-base),
+main p {
   font-size: clamp(1rem, 0.6094rem + 1.25vw, 1.3125rem);
 }
 .welcome-content h1 {
@@ -1279,6 +1475,10 @@ div#newsletter::after {
   z-index: -1;
   background-size: 57%;
 }
+.gruppo-app:after {
+  position: fixed;
+  top: -50vh;
+}
 .gruppo-app {
   position: relative;
 }
@@ -1294,6 +1494,9 @@ div#newsletter::after {
   background-position-y: bottom;
   background-position-x: -51%;
 }
+.login-page .hero-background {
+  top: -80px;
+}
 .createProfile2 .edit-icon {
   position: absolute;
   right: -5px;
@@ -1306,6 +1509,7 @@ div#newsletter::after {
   height: 100%;
   cursor: pointer;
 }
+
 @media screen and (max-width: 769px) {
   .createProfile form {
     margin-top: 15vh;
@@ -1322,7 +1526,39 @@ div#newsletter::after {
   .createProfile {
     overflow: hidden;
   }
+}
+/* App */
+body.gruppo-app main {
+  margin-top: 80px;
+}
 
+@media screen and (min-width: 769px) {
+  .menu-app-pc{
+    height: 75vh;
+  }
+  
+}
+.readmore-btn {
+  padding-top: 12px !important;
+}
+@media screen and (max-width: 769px) {
+  .app--manu {
+    bottom:0;
+    z-index: 20;
+    display: flex !important;
+    width: 100% !important;
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(235 234 234 / var(--tw-border-opacity)) !important;
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color) !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+    border-top: 2px solid ;
+  }
+  body.gruppo-app.user-profile main {
+    margin-top: 50px;
+  }
 }
 
 /* The switch - the box around the slider */
@@ -1383,8 +1619,97 @@ div#newsletter::after {
   .switch .toggler.round:before {
     border-radius: 50%;
   }
-  
-  @media (min-width: 768px) {
+
+  /* Login page */
+  .login-page .hero-background {
+    top: -80px;
+  }
+  @media screen and (max-width: 769px) {
+    .login-page #login {
+      margin-top: 15vh;
+    }
+  }
+
+  /* Single event */
+
+  .img--best-player {
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(252 163 17 / var(--tw-border-opacity));
+}
+
+  /* Create event */
+  .card--make-event {
+    padding: 2.5rem 3rem 2.5rem 3rem;
+    background-color: white !important;
+  }
+  @media screen and (max-width: 769px ) {
+    .wrapper-btn--create-event {
+    position: relative !important;
+    display: block !important;
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 135 31 / var(--tw-bg-opacity)) !important;
+      height: 60px;
+      width: 60px;
+      bottom: 15vh;
+  }
+    .btn--create-event  {
+      height: 60px;
+      width: 60px;
+      bottom: 100px;
+      right: 5%;
+      border-radius: 9999px;
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 135 31 / var(--tw-bg-opacity));
+    }
+    .btn--create-event svg {
+      color: white;
+    }
+  }
+
+  input.hidden-radio {
+  position: absolute !important;
+  top: 0px !important;
+  left: 0px !important;
+  height: 100% !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+    z-index: 5;
+}
+  input.hidden-radio + .input--checked-border {
+  background-color: transparent;
+}
+  input.hidden-radio:checked + .input--checked-border {
+  position: absolute;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 163 17 / var(--tw-bg-opacity));
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    z-index: -1;
+    left: -4px;
+    top: -4px;
+    filter: blur(3px);
+}
+.radio--select-img{
+  overflow: unset !important;
+}
+.radio--select-img .img {
+  border-radius: 9999px;
+}
+.results--single-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.results--single-player > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+@media (min-width: 768px) {
 
   .md\:static {
     position: static;
@@ -1394,8 +1719,16 @@ div#newsletter::after {
     order: 2;
   }
 
+  .md\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
   .md\:col-auto {
     grid-column: auto;
+  }
+
+  .md\:col-start-3 {
+    grid-column-start: 3;
   }
 
   .md\:mx-32 {
@@ -1403,8 +1736,26 @@ div#newsletter::after {
     margin-right: 8rem;
   }
 
+  .md\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .md\:mx-20 {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+
   .md\:mr-3 {
     margin-right: 0.75rem;
+  }
+
+  .md\:mr-8 {
+    margin-right: 2rem;
+  }
+
+  .md\:mr-5 {
+    margin-right: 1.25rem;
   }
 
   .md\:mb-10 {
@@ -1419,8 +1770,16 @@ div#newsletter::after {
     display: block;
   }
 
+  .md\:inline-block {
+    display: inline-block;
+  }
+
   .md\:flex {
     display: flex;
+  }
+
+  .md\:grid {
+    display: grid;
   }
 
   .md\:hidden {
@@ -1431,12 +1790,24 @@ div#newsletter::after {
     height: auto;
   }
 
+  .md\:w-auto {
+    width: auto;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .md\:gap-20 {
+    gap: 5rem;
   }
 
   .md\:space-x-5 > :not([hidden]) ~ :not([hidden]) {
@@ -1460,9 +1831,12 @@ div#newsletter::after {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
+  .md\:text-left {
+    text-align: left;
+  }
 }
-  
-  @media (min-width: 1024px) {
+@media (min-width: 1024px) {
 
   .lg\:flex {
     display: flex;
@@ -1470,5 +1844,13 @@ div#newsletter::after {
 
   .lg\:hidden {
     display: none;
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:gap-10 {
+    gap: 2.5rem;
   }
 }

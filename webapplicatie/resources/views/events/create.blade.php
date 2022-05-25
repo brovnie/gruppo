@@ -2,10 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div>
-    <p>{{__('Oproep maken')}}</p>
-    </div>
-<form method="post" action='/events'>
+    <h1>Maak oproep</h1>
+<form method="post" action='/events' class=" border-xl card--make-event card-shadow">
         @csrf
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -16,11 +14,11 @@
         </ul>
     </div>
 @endif
-    <div>
+    <div class="mb-5">
         <label for="description">{{__('Bericht')}}</label>
-        <textarea row="5" id="description" name="description"></textarea>
+        <textarea rows="5" id="description" name="description"></textarea>
     </div>
-    <div>
+    <div class="mb-5">
         <label>{{__('Sport')}}</label>
         <select name="sport" id="sport">
             <option value="american_football">{{__('American football')}}</option>
@@ -36,8 +34,8 @@
             <option value="waterpolo">{{__('Waterpolo')}}</option>
         </select>
     </div>
-    <div>
-        <div>
+    <div >
+        <div class="mb-5">
             <label for="date">{{__('Datum')}}</label>
             <input 
                 type="date" 
@@ -47,7 +45,7 @@
                 max=" {{ Carbon\Carbon::now()->format('Y-m-d')}} "
                 autofocus>
         </div>  
-        <div>
+        <div class="mb-5">
             <label for="start_time">{{__('Tijd')}}</label>
             <input 
                 type="time" 
@@ -57,15 +55,15 @@
                 autofocus>
         </div>  
     </div>
+    <div class="my-5 pb-3">
+        <p class="fake-h3">{{__('Locatie')}}</p>
     <div>
-        <p>{{__('Locatie')}}</p>
-    <div>
-        <div> 
+        <div class="mb-5 mt-3"> 
             <label for="location">{{__('Stad')}}</label>
             <select-city></select-city>
         </div>
-        <div>
-            <div>
+        <div >
+            <div class="mb-5">
                 <label for="adress">{{__('Straat')}}</label>
                 <input 
                     type="text" 
@@ -74,7 +72,7 @@
                     class="form-control{{ $errors->has('adress') ? ' is-invalid' : '' }}"
                     autofocus>
             </div>
-            <div>
+            <div class="mb-5">
                 <label for="adress_nr">{{__('Nr')}}</label>
                 <input 
                     type="text" 
@@ -84,11 +82,11 @@
                     autofocus>
             </div>
         </div>
-        <div>
+        <div class="mb-5">
             <label for="players">{{__('Aantal personen')}} ({{__('exc. jij')}}) </label>
             <players-range></players-range>
         </div>
-        <div>
+        <div class="mb-5">
             <label for="equipment">{{__('Baal aanwezig?')}}</label>
             <div>
                 <label class="switch">
@@ -98,7 +96,7 @@
             </div>
         </div>
     </div>
-    <button type="submit">{{__('Oproep aanmaken')}}</button>
+    <button type="submit" class="btn btn--inline btn--orange">{{__('Oproep aanmaken')}}</button>
 </form>
 </div>
 @endsection

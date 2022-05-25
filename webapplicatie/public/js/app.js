@@ -2237,7 +2237,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['userId', 'eventDate', 'eventStartTime'],
   data: function data() {
@@ -2393,10 +2392,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
  // import the styling, css or scss
 
 
@@ -2527,6 +2522,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2571,54 +2568,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/SmileysComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/SmileysComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["userId", "smileys"],
-  data: function data() {
-    return {
-      updatedSmileys: 0
-    };
-  },
-  created: function created() {
-    this.smileyListener();
-  },
-  methods: {
-    smileyListener: function smileyListener() {
-      var _this = this;
-
-      Echo.channel('update-smiley').listen('.count-smiley', function (data) {
-        if (data.smiley.userId == _this.userId) {
-          _this.updatedSmileys = data.smiley.smileys;
-        }
-      });
-    }
-  },
-  computed: {
-    returnSmileys: function returnSmileys() {
-      return this.updatedSmileys;
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/StatsComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/StatsComponent.vue?vue&type=script&lang=js& ***!
@@ -2630,7 +2579,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -2739,7 +2687,6 @@ Vue.component('add-remove-player', (__webpack_require__(/*! ./components/AddRemo
 Vue.component('participating-players', (__webpack_require__(/*! ./components/ParticipatingPlayersComponent.vue */ "./resources/js/components/ParticipatingPlayersComponent.vue")["default"]));
 Vue.component('best-player', (__webpack_require__(/*! ./components/BestPlayerComponent.vue */ "./resources/js/components/BestPlayerComponent.vue")["default"]));
 Vue.component('close-game', (__webpack_require__(/*! ./components/CloseGameComponent.vue */ "./resources/js/components/CloseGameComponent.vue")["default"]));
-Vue.component('smileys', (__webpack_require__(/*! ./components/profile/SmileysComponent.vue */ "./resources/js/components/profile/SmileysComponent.vue")["default"]));
 Vue.component('profile-stats', (__webpack_require__(/*! ./components/profile/StatsComponent.vue */ "./resources/js/components/profile/StatsComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to 
@@ -28504,45 +28451,6 @@ component.options.__file = "resources/js/components/TeamListComponent.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/profile/SmileysComponent.vue":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/profile/SmileysComponent.vue ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _SmileysComponent_vue_vue_type_template_id_7378b98c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SmileysComponent.vue?vue&type=template&id=7378b98c& */ "./resources/js/components/profile/SmileysComponent.vue?vue&type=template&id=7378b98c&");
-/* harmony import */ var _SmileysComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SmileysComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/profile/SmileysComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _SmileysComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _SmileysComponent_vue_vue_type_template_id_7378b98c___WEBPACK_IMPORTED_MODULE_0__.render,
-  _SmileysComponent_vue_vue_type_template_id_7378b98c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/profile/SmileysComponent.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/components/profile/StatsComponent.vue":
 /*!************************************************************!*\
   !*** ./resources/js/components/profile/StatsComponent.vue ***!
@@ -28710,22 +28618,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/profile/SmileysComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/profile/SmileysComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SmileysComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SmileysComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/SmileysComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SmileysComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/components/profile/StatsComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/profile/StatsComponent.vue?vue&type=script&lang=js& ***!
@@ -28878,23 +28770,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/profile/SmileysComponent.vue?vue&type=template&id=7378b98c&":
-/*!*********************************************************************************************!*\
-  !*** ./resources/js/components/profile/SmileysComponent.vue?vue&type=template&id=7378b98c& ***!
-  \*********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SmileysComponent_vue_vue_type_template_id_7378b98c___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SmileysComponent_vue_vue_type_template_id_7378b98c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SmileysComponent_vue_vue_type_template_id_7378b98c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SmileysComponent.vue?vue&type=template&id=7378b98c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/SmileysComponent.vue?vue&type=template&id=7378b98c&");
-
-
-/***/ }),
-
 /***/ "./resources/js/components/profile/StatsComponent.vue?vue&type=template&id=1b55126f&":
 /*!*******************************************************************************************!*\
   !*** ./resources/js/components/profile/StatsComponent.vue?vue&type=template&id=1b55126f& ***!
@@ -28934,6 +28809,7 @@ var render = function () {
       ? _c(
           "form",
           {
+            staticClass: "mx-5",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -28942,9 +28818,14 @@ var render = function () {
             },
           },
           [
-            _c("button", { attrs: { type: "submit", name: "participant" } }, [
-              _vm._v("Deelnemen"),
-            ]),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn--inline btn--orange w-auto block ",
+                attrs: { type: "submit", name: "participant" },
+              },
+              [_vm._v("Deelnemen")]
+            ),
           ]
         )
       : _vm._e(),
@@ -28953,6 +28834,7 @@ var render = function () {
       ? _c(
           "form",
           {
+            staticClass: "mx-5",
             on: {
               submit: function ($event) {
                 $event.preventDefault()
@@ -28961,9 +28843,14 @@ var render = function () {
             },
           },
           [
-            _c("button", { attrs: { type: "submit", name: "participant" } }, [
-              _vm._v("Verlaten"),
-            ]),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn--inline btn--white w-auto block ",
+                attrs: { type: "submit", name: "participant" },
+              },
+              [_vm._v("Verlaten")]
+            ),
           ]
         )
       : _vm._e(),
@@ -28994,18 +28881,34 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     Object.keys(_vm.bestPlayer).length != 0
-      ? _c("div", [
-          _c("img", {
-            attrs: {
-              src: "/storage/" + _vm.bestPlayer.profile_photo,
-              alt: "profile picture ",
-            },
-          }),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "", alt: "" } }, [
-            _vm._v(_vm._s(_vm.bestPlayer.username)),
-          ]),
-        ])
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "img-wrapper profile-img--xl relative img--best-player profile-shadow",
+          },
+          [
+            _c("img", {
+              attrs: {
+                src: "/storage/" + _vm.bestPlayer.profile_photo,
+                alt: "profile picture ",
+              },
+            }),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass:
+                  "absolute w-full h-full z-10 top-0 left-0 opacity-0",
+                attrs: {
+                  href: "/profiles/" + _vm.bestPlayer.username,
+                  alt: "",
+                },
+              },
+              [_vm._v(_vm._s(_vm.bestPlayer.username))]
+            ),
+          ]
+        )
       : _vm._e(),
   ])
 }
@@ -29033,10 +28936,16 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\nhello\n    "),
     _vm.hasGamefinished && _vm.isUserInTheTeam && _vm.isMatchResultEmpty
-      ? _c("div", [
-          _c("a", { attrs: { href: _vm.url } }, [_vm._v("Sluit het spel")]),
+      ? _c("div", { staticClass: "mx-5" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn--inline btn--orange w-auto block",
+              attrs: { href: _vm.url },
+            },
+            [_vm._v("Sluit het spel")]
+          ),
         ])
       : _vm._e(),
   ])
@@ -29064,7 +28973,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("span", [_vm._v(_vm._s(_vm.teamSize))])])
+  return _c("div", [_c("p", [_vm._v(_vm._s(_vm.teamSize))])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -29103,10 +29012,8 @@ var render = function () {
         },
       }),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
       _c("input", {
-        staticClass: "hidden",
+        staticClass: "input--hidden",
         attrs: {
           type: "text",
           name: "allowed_participants",
@@ -29118,18 +29025,7 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("span", [_vm._v("1")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("12")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -29268,55 +29164,33 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "flex" },
     _vm._l(_vm.team, function (player, key) {
       return _c("div", [
-        _c("img", {
-          attrs: {
-            src: "/storage/" + player.profil_photo,
-            alt: "profile picture ",
+        _c(
+          "div",
+          {
+            staticClass:
+              "img-wrapper img-wrapper--circle profile-img img-app-nav mr-5 pr-2 profile-shadow",
           },
-        }),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "", alt: "" } }, [
-          _vm._v(_vm._s(player.username)),
-        ]),
+          [
+            _c("img", {
+              staticClass: "img",
+              attrs: {
+                src: "/storage/" + player.profil_photo,
+                alt: "profile picture ",
+              },
+            }),
+            _vm._v(" "),
+            _c("a", { attrs: { href: "", alt: "" } }, [
+              _vm._v(_vm._s(player.username)),
+            ]),
+          ]
+        ),
       ])
     }),
     0
   )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/SmileysComponent.vue?vue&type=template&id=7378b98c&":
-/*!************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/profile/SmileysComponent.vue?vue&type=template&id=7378b98c& ***!
-  \************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.updatedSmileys > 0
-      ? _c("p", { staticClass: "font-xl font-bold" }, [
-          _vm._v(_vm._s(_vm.updatedSmileys)),
-        ])
-      : _c("p", { staticClass: "font-xl font-bold" }, [
-          _vm._v(_vm._s(_vm.smileys)),
-        ]),
-  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -29341,44 +29215,55 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "grid grid-cols-3" }, [
-    _c("div", { staticClass: "flex-1" }, [
+  return _c("div", { staticClass: "grid grid-cols-3 mt-5" }, [
+    _c("div", { staticClass: "flex-1  md:flex space-x-3" }, [
       _vm.updatedSmileys > 0
         ? _c("p", { staticClass: "font-xl font-bold" }, [
             _vm._v(_vm._s(_vm.updatedFriends)),
           ])
-        : _c("p", { staticClass: "font-xl font-bold" }, [
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.updatedSmileys === 0
+        ? _c("p", { staticClass: "font-xl font-bold" }, [
             _vm._v(_vm._s(_vm.friends)),
-          ]),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("p", { staticClass: "font-sm", attrs: { translate: "Vrienden" } }, [
         _vm._v("Vrienden"),
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "flex-1" }, [
-      _vm._v("\r\n    " + _vm._s(_vm.updatedParticipations) + "\r\n        "),
+    _c("div", { staticClass: "flex-1 md:flex space-x-3" }, [
       _vm.updatedParticipations > 0
         ? _c("p", { staticClass: "font-xl font-bold" }, [
             _vm._v(_vm._s(_vm.updatedParticipations)),
           ])
-        : _c("p", { staticClass: "font-xl font-bold" }, [
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.updatedParticipations === 0
+        ? _c("p", { staticClass: "font-xl font-bold test" }, [
             _vm._v(_vm._s(_vm.participated)),
-          ]),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("p", { staticClass: "font-sm", attrs: { translate: "Deelnemen" } }, [
         _vm._v("Deelnemen"),
       ]),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "flex-1" }, [
+    _c("div", { staticClass: "flex-1 md:flex space-x-3" }, [
       _vm.updatedSmileys > 0
-        ? _c("p", { staticClass: "font-xl font-bold" }, [
+        ? _c("p", { staticClass: "font-xl font-bold " }, [
             _vm._v(_vm._s(_vm.updatedSmileys)),
           ])
-        : _c("p", { staticClass: "font-xl font-bold" }, [
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.updatedSmileys === 0
+        ? _c("p", { staticClass: "font-xl font-bold" }, [
             _vm._v(_vm._s(_vm.smileys)),
-          ]),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("p", { staticClass: "font-sm" }, [_vm._v("Smileys")]),
     ]),

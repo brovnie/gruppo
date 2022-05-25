@@ -1,9 +1,9 @@
 <template>
 <div>
  
-    <div v-if="Object.keys(bestPlayer).length != 0 ">
+    <div v-if="Object.keys(bestPlayer).length != 0 "  class="img-wrapper profile-img--xl relative img--best-player profile-shadow">
         <img :src="'/storage/' + bestPlayer.profile_photo" alt="profile picture " >
-        <a href="" alt="">{{ bestPlayer.username }}</a>
+        <a class="absolute w-full h-full z-10 top-0 left-0 opacity-0" :href="'/profiles/' +  bestPlayer.username " alt="">{{ bestPlayer.username }}</a>
     </div>
 
 </div>

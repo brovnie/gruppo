@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -90,5 +91,13 @@ class ProfilesController extends Controller
         return view('profiles.edit', [ 'username' => $username ]);    
     }
 
+    /**
+     * My events
+     */
+    public function myEvents( $username )
+    {
+        $events = Auth::user()->profile->participate;
+        return view('profiles.myevents', [ 'user' => $username, 'events' => $events]);    
+    }
 
 }
